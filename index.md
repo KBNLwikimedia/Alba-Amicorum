@@ -4,8 +4,10 @@
 
 We are currently collecting data of the alba amicorum of the KB and structuring them on wikidata. We have three main sources we collect these data from: the KB catalogue, our LOD platform data.bibliotheken.nl and Europeana. 
 
+We als maintain project pages about our alba amicorum [on Wikidata](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands) and on [Wikimedia Commons]()
+
 ### Pilot project AA Jacob Heyblocq
-The initial pilot project is the data and images from the Album amicorum Jacob Heyblocq that currently [has its own repository](https://github.com/KBNLwikimedia/AlbumAmicorumJacobHeyblocq). 
+The initial pilot project is about the data and images from the [Album amicorum Jacob Heyblocq](alba/AA-Jacob-Heyblocq) 
 
 ### Phase 2: focus list of 10 alba amicorum
 In the second phase we collect data and images from ten alba amicorum: general scripts, workflows and manuals are shared in this repository. 
