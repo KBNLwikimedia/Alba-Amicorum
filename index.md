@@ -15,19 +15,20 @@ In the second phase we collect data and images from ten alba amicorum: general s
 1. [Jacoba Cornelia Bolten](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Jacoba_Cornelia_Bolten)
 1. [Jacob Heyblocq](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Jacob_Heyblocq)
 1. Geertruida Bosboom-Toussaint (geheugen.delpher.nl)
-1. Burchard Grossmann
-1. Ernst Brinck
-1. Janus Dousa
+1. Burchard Grossmann (Europeana)
+1. Ernst Brinck (Europeana)
+1. Janus Dousa (University library Leiden)
+1. tbd
 
 #### Workflow for uploading data
 Via the how-to link you can find more information on how to perform these actions. If you already know how to perform the actions and are just here to get the scripts and other files, please use the shortcut links. 
 
 1. download data (XML) from KB catalogue via jSRU API and put into csv-file (how-to)
-    1. (shortcut) we created a script for that
+    1. we created a script for that (shortcut) 
 1. clean up and reconcile data in OpenRefine (how-to)
 1. upload data for a **complete album amicorum** to Wikidata (how-to)
 1. upload data for **contributions to alba amicorum** to Wikidata (how-to)
-    1. OR schema in JSON for creating the contributions: upload straight to Wikidata via OpenRefine (shortcut)
+    1. OR schema in JSON for creating the contributions: upload straight to Wikidata via OpenRefine (shortcut) 
     1. OR schema in JSON for creating the main body of properties of the contribution: upload to Wikidata via Quickstatements (shortcut)
     1. OR schema in JSON for creating the properties concerning the image(s) of an album contribution:upload via Quickstatements (shortcut)
 1. (In progress, not finished): your copy right free image on your url (P4765) can be automatically uploaded to Wikimedia Commons
