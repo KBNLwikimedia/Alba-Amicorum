@@ -1,4 +1,4 @@
-![Banner alba](/images/AlbaAmicorumKB_BannerWikimedia_EN.jpg)
+![Banner alba](/banners/AlbaAmicorumKB_BannerWikimedia_EN.jpg)
 
 ## Alba amicorum of the KB
 
