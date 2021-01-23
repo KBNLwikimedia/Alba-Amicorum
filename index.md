@@ -9,8 +9,8 @@ The initial pilot project is the data and images from the Album amicorum Jacob H
 
 ### Phase 2: focus list of 10 alba amicorum
 In the second phase we collect data and images from ten alba amicorum: general scripts, workflows and manuals are shared in this repository. 
-1. [Hiskia van Harinxma toe Slooten](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Hiskia van Harinxma)
-1. [Samuel Johannes van den Bergh](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Samuel Johannes van den Bergh)
+1. [Hiskia van Harinxma toe Slooten](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Hiskia_van_Harinxma)
+1. [Samuel Johannes van den Bergh](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Samuel_Johannes_van_den_Bergh)
 1. [Petronella Moens](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Petronella Moens)
 1. [Jacoba Cornelia Bolten](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Jacoba Cornelia Bolten)
 1. [Jacob Heyblocq](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Jacob Heyblocq)
