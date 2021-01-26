@@ -30,9 +30,9 @@ Via the how-to link you can find more information on how to perform these action
 1. clean up and reconcile data in OpenRefine (how-to)
 1. upload data for a **complete album amicorum** to Wikidata (how-to)
 1. upload data for **contributions to alba amicorum** to Wikidata (how-to)
-    1. OR schema in JSON for creating the contributions: upload straight to Wikidata via OpenRefine (shortcut) 
-    1. OR schema in JSON for creating the main body of properties of the contribution: upload to Wikidata via Quickstatements (shortcut)
-    1. OR schema in JSON for creating the properties concerning the image(s) of an album contribution:upload via Quickstatements (shortcut)
+    1. OR schema in JSON for creating the contributions: upload straight to Wikidata via OpenRefine ([shortcut](https://github.com/KBNLwikimedia/Alba-Amicorum/blob/main/scripts/schema%20AA%20-%201%20-%20creation.json)) 
+    1. OR schema in JSON for creating the main body of properties of the contribution: upload to Wikidata via Quickstatements ([shortcut](https://github.com/KBNLwikimedia/Alba-Amicorum/blob/main/scripts/schema%20AA%20-%202%20-%20main%20part.json))
+    1. OR schema in JSON for creating the properties concerning the image(s) of an album contribution:upload via Quickstatements ([shortcut](https://github.com/KBNLwikimedia/Alba-Amicorum/blob/main/scripts/schema%20AA%20-%203%20-%20P4765.json))
 1. (In progress, not finished): your copy right free image on your url (P4765) can be automatically uploaded to Wikimedia Commons
 1. Upload data for **contributors** to an album amicorum (how-to)
     1. OR schema in JSON for creating a Wikidata item for the contributors (shortcut)
