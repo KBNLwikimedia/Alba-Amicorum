@@ -16,10 +16,10 @@ In the second phase we collect data and images from ten alba amicorum: general s
 1. [Petronella Moens](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Petronella_Moens) (WD)
 1. [Jacoba Cornelia Bolten](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Jacoba_Cornelia_Bolten) (WD)
 1. [Jacob Heyblocq](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Jacob_Heyblocq) (WD)
-1. Geertruida Bosboom-Toussaint (geheugen.delpher.nl)
-1. Burchard Grossmann (Europeana)
-1. Ernst Brinck (Europeana)
-1. Janus Dousa (University library Leiden)
+1. [Geertruida Bosboom-Toussaint](https://geheugen.delpher.nl/nl/geheugen/pages/collectie/Album+amicorum+A.L.G.+Bosboom-Toussaint,+1882) (geheugen.delpher.nl)
+1. [Burchard Grossmann](https://www.europeana.eu/nl/search?page=1&view=grid&query=Burchard%20Grossmann) (Europeana)
+1. [Ernst Brinck](https://www.europeana.eu/nl/search?page=1&view=grid&query=ernst%20brinck) (Europeana)
+1. [Janus Dousa](https://digitalcollections.universiteitleiden.nl/view/item/882520#page/1/mode/1up) (University library Leiden)
 1. tbd
 
 #### Workflow for uploading data
@@ -28,8 +28,8 @@ Via the how-to link you can find more information on how to perform these action
 1. download data (XML) from KB catalogue via jSRU API and put into csv-file (how-to)
     1. we created a script for that ([shortcut](https://github.com/KBNLwikimedia/Alba-Amicorum/blob/main/scripts/extract-data2.py)) 
 1. clean up and reconcile data in OpenRefine (how-to)
-1. upload data for a **complete album amicorum** to Wikidata (how-to)
-1. upload data for **contributions to alba amicorum** to Wikidata (how-to)
+1. upload data for a **complete album amicorum** to Wikidata [using this datamodel](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Datamodel) (how-to)
+1. upload data for **contributions to alba amicorum** to Wikidata [using this datamodel](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Datamodel/Album_contribution) (how-to)
     1. OR schema in JSON for creating the contributions: upload straight to Wikidata via OpenRefine ([shortcut](https://github.com/KBNLwikimedia/Alba-Amicorum/blob/main/scripts/schema%20AA%20-%201%20-%20creation.json)) 
     1. OR schema in JSON for creating the main body of properties of the contribution: upload to Wikidata via Quickstatements ([shortcut](https://github.com/KBNLwikimedia/Alba-Amicorum/blob/main/scripts/schema%20AA%20-%202%20-%20main%20part.json))
     1. OR schema in JSON for creating the properties concerning the image(s) of an album contribution: upload via Quickstatements ([shortcut](https://github.com/KBNLwikimedia/Alba-Amicorum/blob/main/scripts/schema%20AA%20-%203%20-%20P4765.json))
