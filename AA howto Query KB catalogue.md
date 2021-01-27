@@ -9,7 +9,7 @@ Belangrijk: In de setup is er een vinkje met de strekking “installeer voor all
 * Navigeer naar de map met de python-bestanden met het commando "cd” (current directory), bijvoorbeeld cd C:\Users\Username\Documents\Scripts 
 * Run het script extract-data2.py met het commando: python extract-data.py 
 De eerste paar keer zal je de volgende error een aantal keren tegenkomen: zoals ModuleNotFoundError: No module named 'chardet' 
-Dit betekent dat een module nog geïnstalleerd moet worden, in dit geval “chardet”.  
+Dit betekent dat een module nog geïnstalleerd moet worden, in dit geval “chardet”.
 Dit doe je met het commando: pip install chardet 
 
 ## Stap 2:
