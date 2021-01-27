@@ -25,7 +25,7 @@ In the second phase we collect data and images from ten alba amicorum: general s
 #### Workflow for uploading data
 Via the how-to link you can find more information on how to perform these actions. If you already know how to perform the actions and are just here to get the scripts and other files, please use the shortcut links. 
 
-1. download data (XML) from KB catalogue via jSRU API and put into csv-file (how-to)
+1. download data (XML) from KB catalogue via jSRU API and put into csv-file ([how-to](https://github.com/KBNLwikimedia/Alba-Amicorum/blob/main/AA%20howto%20Query%20KB%20catalogue))
     1. we created a script for that ([shortcut](https://github.com/KBNLwikimedia/Alba-Amicorum/blob/main/scripts/extract-data2.py)) 
 1. clean up and reconcile data in OpenRefine (how-to)
 1. upload data for a **complete album amicorum** to Wikidata [using this datamodel](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Datamodel) (how-to)
