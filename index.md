@@ -27,7 +27,7 @@ Via the how-to link you can find more information on how to perform these action
 
 1. download data (XML) from KB catalogue via jSRU API and put into csv-file ([how-to](https://github.com/KBNLwikimedia/Alba-Amicorum/blob/main/AA%20howto%20Query%20KB%20catalogue))
     1. we created a script for that ([shortcut](https://github.com/KBNLwikimedia/Alba-Amicorum/blob/main/scripts/extract-data2.py)) 
-1. clean up and reconcile data in OpenRefine (how-to)
+1. clean up and reconcile data in OpenRefine ([how-to](https://github.com/KBNLwikimedia/Alba-Amicorum/blob/main/AA%20howto%20Cleanup%20Reconcile%20with%20OpenRefine.md)
 1. upload data for a **complete album amicorum** to Wikidata [using this datamodel](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Datamodel) (how-to)
 1. upload data for **contributions to alba amicorum** to Wikidata [using this datamodel](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Datamodel/Album_contribution) (how-to)
     1. OR schema in JSON for creating the contributions: upload straight to Wikidata via OpenRefine ([shortcut](https://github.com/KBNLwikimedia/Alba-Amicorum/blob/main/scripts/schema%20AA%20-%201%20-%20creation.json)) 
