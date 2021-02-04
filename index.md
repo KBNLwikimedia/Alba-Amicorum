@@ -36,5 +36,6 @@ Via the how-to link you can find more information on how to perform these action
 1. (In progress, not finished): your copy right free image on your url (P4765) can be automatically uploaded to Wikimedia Commons
 1. Upload data for **contributors** to an album amicorum (how-to)
     1. OR schema in JSON for creating a Wikidata item for the contributors (shortcut)
+    1. OR schema for adding the main information to a Wikidata item of a contributor (schortcut)
 
 [test](https://github.com/KBNLwikimedia/Alba-Amicorum/blob/main/AA%20timeline.html)
