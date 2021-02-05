@@ -18,4 +18,4 @@ http://jsru.kb.nl/sru?version=1.2&operation=searchRetrieve&x-collection=GGC&quer
 * Na deze query komt er een xml-output in je browser; kopieer deze xml (met een notepas editor) en plaats het in de map waarin ook je extract-data2.py script staat. 
 * Voer de bestandsnaam van dit xml-bestand in op regel 45 van het extract-data2.py script 
 * Run het Python-script extract-data2.py en de data uit het xml-wordt omgezet in een excel-bestand. 
-* Dit excel-bestand kan je gebruiken om de dara uit de KB-catalogus in OpenRefine aan te vullen en te reconciliëren (how-to)
+* Dit excel-bestand kan je gebruiken om de data uit de KB-catalogus in OpenRefine aan te vullen en te reconciliëren (how-to)
