@@ -13,7 +13,9 @@ Dit doe je met het commando: pip install chardet
 
 ## Stap 2: Gebruik het KB-catalogus-script extra-data2.py
 * Download het KB-catalogus-script [extract-data2.py](https://github.com/KBNLwikimedia/Alba-Amicorum/blob/main/scripts/extract-data2.py)
-* Voeg de signatuur-code van het album amicorum in de url in (zonder spaties) 
-* http://jsru.kb.nl/sru?version=1.2&operation=searchRetrieve&x-collection=GGC&query=(EuropeanaTravel AND 121C11)&recordSchema=dcx&startRecord=1&maximumRecords=1000  
-* Voer de bestandsnaam van dit JSON-bestand in op regel 45 van het extract-data.py script 
-* Run het script, waardoor er een Excel-bestand in de map waar het script staat bij komt 
+* Voeg de juiste signatuur-code van het album amicorum in de volgende url in (zonder spaties) 
+http://jsru.kb.nl/sru?version=1.2&operation=searchRetrieve&x-collection=GGC&query=(EuropeanaTravel AND 121C11)&recordSchema=dcx&startRecord=1&maximumRecords=1000  
+* Na deze query komt er een xml-output in je browser; kopieer deze xml (met een notepas editor) en plaats het in de map waarin ook je extract-data2.py script staat. 
+* Voer de bestandsnaam van dit xml-bestand in op regel 45 van het extract-data2.py script 
+* Run het Python-script extract-data2.py en de data uit het xml-wordt omgezet in een excel-bestand. 
+* Dit excel-bestand kan je gebruiken om de dara uit de KB-catalogus in OpenRefine aan te vullen en te reconciliëren (how-to)
