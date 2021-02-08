@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import re
 import xmltodict
 import pandas as pd
@@ -24,11 +26,11 @@ with open(filename, encoding="UTF-8") as fd:
         if 'dc:language' in row:
             out['lang'] = [row['dc:language'][x]['#text'] for x in range(len(row['dc:language'])) if '@xml:lang' in row['dc:language'][x] 
                                                                            and row['dc:language'][x]['@xml:lang'] == 'en']
-        if isinstance(row['dcx:annotation'], list):
+        if 'dcx:annotations' in row and isinstance(row['dcx:annotation'], list):
             out['annotations']  = [x          for x in row['dcx:annotation'] if isinstance(x, str)] 
             out['annotations'] += [x['#text'] for x in row['dcx:annotation'] if isinstance(x, dict)]
-        else:
-            out['annotations']  = [row['dcx:annotation']["#text"]]
+        elif 'dcx:annotations' in row:
+            out['annotations']  = [row['dcx:annotation']["#text"]] if isinstance(row['dcx:annotation'], dict) else [row['dcx:annotation']]
         out['annotations'].reverse()
         out['creator'] = []
         if 'dc:creator' not in row:
@@ -55,9 +57,9 @@ with open(filename, encoding="UTF-8") as fd:
 
 maxLenghts = {}
 maxLenghts["creator"]     = max([len(outlist[page]["creator"])     for page in outlist])
-maxLenghts["pagelist"]    = max([len(outlist[page]["pagelist"])    for page in outlist if "pagelist" in outlist[page]])
-maxLenghts["images"]      = max([len(outlist[page]["images"])      for page in outlist if "images"   in outlist[page]])
-maxLenghts["lang"]        = max([len(outlist[page]["lang"])        for page in outlist if "lang"     in outlist[page]])
+maxLenghts["pagelist"]    = max([len(outlist[page]["pagelist"])    for page in outlist])
+maxLenghts["images"]      = max([len(outlist[page]["images"])      for page in outlist])
+maxLenghts["lang"]        = max([len(outlist[page]["lang"])        for page in outlist if "lang"        in outlist[page]])
 maxLenghts["annotations"] = max([len(outlist[page]["annotations"]) for page in outlist if "annotations" in outlist[page]])
 
 dfcolumns = ['page', 'title', 'date', 'PPN kbcatlinks', 'oclc', 'shelfmark']
@@ -75,7 +77,7 @@ for page in sorted(outlist):
         row.get('title'),
         row.get('date'),
         row.get('kbcatlinks'),
-        row.get('oclc'),
+        row.get('OCLC'),
         row.get('shelfmark')]
     for x in maxLenghts:
         for y in range(maxLenghts[x]):
