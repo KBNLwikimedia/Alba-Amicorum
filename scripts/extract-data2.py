@@ -26,12 +26,13 @@ with open(filename, encoding="UTF-8") as fd:
         if 'dc:language' in row:
             out['lang'] = [row['dc:language'][x]['#text'] for x in range(len(row['dc:language'])) if '@xml:lang' in row['dc:language'][x] 
                                                                            and row['dc:language'][x]['@xml:lang'] == 'en']
-        if 'dcx:annotations' in row and isinstance(row['dcx:annotation'], list):
-            out['annotations']  = [x          for x in row['dcx:annotation'] if isinstance(x, str)] 
-            out['annotations'] += [x['#text'] for x in row['dcx:annotation'] if isinstance(x, dict)]
-        elif 'dcx:annotations' in row:
-            out['annotations']  = [row['dcx:annotation']["#text"]] if isinstance(row['dcx:annotation'], dict) else [row['dcx:annotation']]
-        out['annotations'].reverse()
+        if 'dcx:annotation' in row: 
+            if isinstance(row['dcx:annotation'], list):
+                out['annotations']  = [x          for x in row['dcx:annotation'] if isinstance(x, str)] 
+                out['annotations'] += [x['#text'] for x in row['dcx:annotation'] if isinstance(x, dict)]
+            else:
+                out['annotations']  = [row['dcx:annotation']["#text"]] if isinstance(row['dcx:annotation'], dict) else [row['dcx:annotation']]
+            out['annotations'].reverse()
         out['creator'] = []
         if 'dc:creator' not in row:
             creator = {}
