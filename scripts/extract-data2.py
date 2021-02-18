@@ -25,12 +25,12 @@ with open( 'dict.csv', 'r', encoding='UTF8' ) as file:
         outrows = {}
         with urllib.request.urlopen("http://jsru.kb.nl/sru?query=(EuropeanaTravel%20AND%20"+album_id+")&recordSchema=dcx&startRecord=1&maximumRecords=1000&version=1.2&operation=searchRetrieve&x-collection=GGC") as xml:
             doc = xmltodict.parse(xml.read())
-            album_name = [x['#text'] for x in doc['srw:searchRetrieveResponse']['srw:records']['srw:record'][0]['srw:recordData']['srw_dc:dc']['dcterms:isPartOf'] if '@dcx:recordIdentifier' in x][0]
-            album_name = re.sub(r'(Album amicorum van )?(.+?);.+', r'\2', album_name).strip()
-            album_code = "AA"+"".join(re.findall(r'[A-Z]', album_name))
             for i in range(len(doc['srw:searchRetrieveResponse']['srw:records']['srw:record'])):
                 out = {}
                 row = doc['srw:searchRetrieveResponse']['srw:records']['srw:record'][i]['srw:recordData']['srw_dc:dc']
+                out['album_name'] = [x['#text'] for x in row['dcterms:isPartOf'] if '@dcx:recordIdentifier' in x][0]
+                out['album_name'] = re.sub(r'(Album amicorum van )?(.+?);.+', r'\2', out['album_name']).strip()
+                out['album_code'] = "AA"+"".join(re.findall(r'[A-Z]', out['album_name']))
                 
                 out['title']      = row['dc:title']['#text']
                 out['date']       = re.sub(r'[\[\]]', '', row['dc:date']) if 'dc:date' in row else ""
@@ -93,12 +93,12 @@ for album_id in albums:
     maxLenghts["lang"]        = max([len(album[page]["lang"])        for page in album if "lang"        in album[page]])
     maxLenghts["annotations"] = max([len(album[page]["annotations"]) for page in album if "annotations" in album[page]])
 
-    dfcolumns = ['volgnr', 'album_name', 'album_code','page', 'title', 'date', 'PPN kbcatlinks','PPN kbcatahidden',  'oclc', 'shelfmark']
+    dfcolumns = ['volgnr', 'album_name', 'album_code','page','Label EN', 'Label NL', 'Des EN', 'Des NL', 'title', 'date', 'PPN kbcatlinks','PPN kbcatahidden',  'oclc', 'shelfmark']
 
     for x in maxLenghts:
         if x == "creator":
             for y in range(maxLenghts[x]):
-                dfcolumns += ['Label EN'+str(y+1), 'Label NL'+str(y+1), 'Des EN'+str(y+1), 'Des NL'+str(y+1), 'name'+str(y+1), 'birthyear'+str(y+1), 'deadyear'+str(y+1), 'nta'+str(y+1), 'nta-url'+str(y+1), 'isni'+str(y+1)]
+                dfcolumns += [ 'name'+str(y+1), 'birthyear'+str(y+1), 'deadyear'+str(y+1), 'nta'+str(y+1), 'nta-url'+str(y+1), 'isni'+str(y+1)]
         else:
             dfcolumns += [x+str(y+1) for y in range(maxLenghts[x])]
     df = pd.DataFrame(columns=dfcolumns)
@@ -106,10 +106,17 @@ for album_id in albums:
     for page in sorted(album):
         row = album[page]
         volgnr = str(index).zfill(3)
+        creators = ", ".join([x.get('name') for x in row['creator']])
+        creators_en = re.sub(r'(.+), (.+)', r'\1 and \2', creators)
+        creators_nl = re.sub(r'(.+), (.+)', r'\1 en \2', creators)
         contribtuple = [volgnr,
-            album_name,
-            album_code,
+            row.get('album_name'),
+            row.get('album_code'),
             page,
+            row.get('album_code')+"-"+volgnr+' Contribution of '+creators_en, 
+            row.get('album_code')+"-"+volgnr+' Bijdrage van ' +  creators_nl, 
+            'contribution of '+ creators_en +' to album amicorum of '+row.get('album_name'), 
+            'albumbijdrage van ' + creators_nl +' aan album amicorum van '+row.get('album_name'), 
             row.get('title'),
             row.get('date'),
             row.get('kbcatlinks'),
@@ -121,10 +128,6 @@ for album_id in albums:
                 if x == 'creator':
                     try:
                         contribtuple += [
-                        album_code+"-"+volgnr+' Contribution of '+row[x][y].get('name'), 
-                        album_code+"-"+volgnr+' Bijdrage van ' +  row[x][y].get('name'), 
-                        'contribution of '+row[x][y].get('name')+' to album amicorum of '+album_name, 
-                        'albumbijdrage van ' +  row[x][y].get('name')+' aan album amicorum van '+album_name, 
                         row[x][y].get('name'),
                         row[x][y].get('birthyear'),
                         row[x][y].get('deadyear'),
@@ -132,7 +135,7 @@ for album_id in albums:
                         row[x][y].get('nta-url'),
                         row[x][y].get('isni')]
                     except IndexError as e:
-                        contribtuple += ["","","","","","","","","",""]
+                        contribtuple += ["","","","","","",]
                 else:
                     try:
                         contribtuple.append(row[x][y])
