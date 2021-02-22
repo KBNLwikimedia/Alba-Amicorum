@@ -4,10 +4,11 @@ import re
 import csv
 import time
 import urllib.request
+import datetime as dt
 import xmltodict
 import pandas as pd
 
-languages = {
+LANGUAGES = {
     'Dutch; Flemish': 'Q7411', #just Dutch
     'French': 'Q150',
     'Latin' : 'Q397',
@@ -17,6 +18,41 @@ languages = {
     'Greek, Ancient (to 1453)' :'Q35497',
     'Italian' :'Q652'
 }
+MONTH_LABELS = {
+    "01":{"jan.", "januari" },
+    "02":{"feb.", "februari" , "febr."},
+    "03":{"maa.", "maart"},
+    "04":{"apr.", "april" },
+    "05":{"mei"},
+    "06":{"jun.", "juni"},
+    "07":{"jul.", "juli"},
+    "08":{"aug.", "augustus" },
+    "09":{"sep.", "september", "sept."},
+    "10":{"okt.", "oktober"},
+    "11":{"nov.", "november" },
+    "12":{"dec.", "december" }
+}
+def langToQID(lang):
+    if lang in LANGUAGES:
+        return LANGUAGES.get(lang)
+    else:
+        return lang
+
+def date_format(date):
+    if re.match(r'^1[3-8]\d\d$', date):
+        #1835 // 1403
+        return date
+    for month in MONTH_LABELS:
+        for label in MONTH_LABELS[month]:
+            if re.match(r'^\d{1,2} '+label+ r' 1[3-8]\d\d$', date):
+                #12 dec. 1830 // 23 mei 1459 // 3 maart 1888
+                new_date = re.sub(r'(\d{1,2}) '+label + r' (1[3-8]\d\d)', r'\2-'+ month+ r'-\1', date)
+                return dt.datetime.strptime(new_date,"%Y-%m-%d").strftime("%Y-%m-%d")
+            elif re.match(r'^'+label+ r' 1[3-8]\d\d$', date):
+                #apr. 1848 // augustus 1765
+                return re.sub(r'^'+label+ r' (1[3-8]\d\d)', r'\1-'+ month, date)
+    return date
+    
 albums = {}
 with open( 'dict.csv', 'r', encoding='UTF8' ) as file:
     reader = csv.reader(file, delimiter=';')
@@ -34,6 +70,7 @@ with open( 'dict.csv', 'r', encoding='UTF8' ) as file:
                 
                 out['title']      = row['dc:title']['#text']
                 out['date']       = re.sub(r'[\[\]]', '', row['dc:date']) if 'dc:date' in row else ""
+                out['date']       = date_format(out['date'])
                 out['pagelist']   = [re.sub(r'.+\((.+?)\)', r'\1',
                           x['@dcx:anchorText']) for x in row['dc:identifier'] if x['@xsi:type'] == 'dcterms:URI' and '@dcx:anchorText' in x]
                 out['images']     = [x['#text'] for x in row['dc:identifier'] if x['@xsi:type'] == 'dcterms:URI' and '@dcx:anchorText' in x]
@@ -41,18 +78,12 @@ with open( 'dict.csv', 'r', encoding='UTF8' ) as file:
                 out['OCLC']       = [x['#text'] for x in row['dc:identifier'] if x['@xsi:type'] == 'OCLC'][0]
                 out['shelfmark']  = [x['#text'] for x in row['dc:identifier'] if x['@xsi:type'] == 'shelfmark'][0]
                 out['shelfmark']  = out['shelfmark'].replace('Den Haag, Koninklijke Bibliotheek : ', '')
-                out['kbcatlinks'] = out['kbcatlinks'].replace("http://resolver.kb.nl/resolve?urn=PPN:", "")
-                out['kbcatahidden'] = "https://opc-kb.oclc.org/DB=1/SET=1/TTL=1/PRS=PP/PPN?PPN="+out['kbcatlinks']
-                out['kbcatlinks']   = "https://opc-kb.oclc.org/DB=1/PPN?PPN="+out['kbcatlinks']
+                out['PPN'] = out['kbcatlinks'].replace("http://resolver.kb.nl/resolve?urn=PPN:", "")
                 if 'dc:language' in row:
                     out['lang'] = []
                     for x in range(len(row['dc:language'])): 
                         if '@xml:lang' in row['dc:language'][x] and row['dc:language'][x]['@xml:lang'] == 'en':
-                            lang = row['dc:language'][x]['#text']
-                            if lang in languages:
-                                out['lang'].append(languages.get(lang))
-                            else:
-                                out['lang'].append(lang)
+                            out['lang'].append(langToQID(row['dc:language'][x]['#text']))
                 if 'dcx:annotation' in row: 
                     if not isinstance(row['dcx:annotation'], list):
                         row['dcx:annotation'] = [row['dcx:annotation']]
@@ -99,6 +130,9 @@ for album_id in albums:
         if x == "creator":
             for y in range(maxLenghts[x]):
                 dfcolumns += [ 'name'+str(y+1), 'birthyear'+str(y+1), 'deadyear'+str(y+1), 'nta'+str(y+1), 'nta-url'+str(y+1), 'isni'+str(y+1)]
+        elif x == 'pagelist':
+            for y in range(maxLenghts[x]):
+                dfcolumns += [ 'page'+str(y+1), 'title'+str(y+1)]
         else:
             dfcolumns += [x+str(y+1) for y in range(maxLenghts[x])]
     df = pd.DataFrame(columns=dfcolumns)
@@ -119,8 +153,8 @@ for album_id in albums:
             'albumbijdrage van ' + creators_nl +' aan album amicorum van '+row.get('album_name'), 
             row.get('title'),
             row.get('date'),
-            row.get('kbcatlinks'),
-            row.get('kbcatahidden'),
+            "https://opc-kb.oclc.org/DB=1/SET=1/TTL=1/PRS=PP/PPN?PPN="+row.get('PPN'),
+            "https://opc-kb.oclc.org/DB=1/PPN?PPN="+row.get('PPN'),
             row.get('OCLC'),
             row.get('shelfmark')]
         for x in maxLenghts:
@@ -136,6 +170,14 @@ for album_id in albums:
                         row[x][y].get('isni')]
                     except IndexError as e:
                         contribtuple += ["","","","","","",]
+                elif x == 'pagelist':
+                    try:
+                       contribtuple += [
+                        row[x][y],
+                        "Album amicorum of "+row.get('album_name')+" - "+creators_en+ " - " +album_id +"-" + row[x][y]
+                       ] 
+                    except (IndexError,KeyError) as e:
+                        contribtuple += ["",""]
                 else:
                     try:
                         contribtuple.append(row[x][y])
