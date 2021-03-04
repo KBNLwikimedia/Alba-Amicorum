@@ -59,19 +59,19 @@ def date_format(date):
         return clean_date
     # voor 1687
     if re.match(r'^voor 1[3-8]\d\d', date):
-        clean_date['clean'] = re.sub(r'^(\d\d\d).+', r'\1', date) + '0D'
-        clean_date['end']   = re.sub(r'^(\d\d\d\d).+', r'\1', date)
+        clean_date['clean'] = re.sub(r'^voor (\d\d\d)\d', r'\1', date) + '0D'
+        clean_date['end']   = re.sub(r'^voor (\d\d\d\d)', r'\1', date)
         return clean_date
     # 1666 of later
     if re.match(r'^1[3-8]\d\d of later$', date):
-        clean_date['clean'] = re.sub(r'^(\d\d\d).+', r'\1', date) + '0D'
-        clean_date['start'] = re.sub(r'^(\d\d\d\d).+', r'\1', date)
+        clean_date['clean'] = re.sub(r'^(\d\d\d)\d of later$', r'\1', date) + '0D'
+        clean_date['start'] = re.sub(r'^(\d\d\d\d) of later$', r'\1', date)
         return clean_date
     # tussen 1849 en 1861 // tussen 1849 en 1863 // tussen 1849 en 1863
     if re.match(r'^tussen 1[3-8]\d\d en 1[3-8]\d\d$', date):
-        clean_date['start'] = re.sub(r'.+?(1[3-8]\d\d).+', r'\1', date)
-        clean_date['end']   = re.sub(r'.+(1[3-8]\d\d)$',   r'\1', date)
-        if int(clean_date['start'][-1]) > 7 and int(clean_date['end'][-1]) < 4:
+        clean_date['start'] = re.sub(r'^tussen (1[3-8]\d\d).+', r'\1', date)
+        clean_date['end']   = re.sub(r'^tussen \d{4} en (1[3-8]\d\d)$',   r'\1', date)
+        if int(clean_date['start'][-1]) > 7 and int(clean_date['end'][-1]) < 4 and int(clean_date['start'][0:3]) + 1 == int(clean_date['end'][0:3]) -1:
             clean_date['clean'] = str(int(clean_date['start'][0:3]) + 1) +'0D'
         else:
             clean_date['clean'] = str(int(clean_date['start'][0:2]) + 1) +'00C'
@@ -106,6 +106,8 @@ with open( 'dict.csv', 'r', encoding='UTF8' ) as file:
         with urllib.request.urlopen("http://jsru.kb.nl/sru?query=(EuropeanaTravel%20AND%20"+album_id+")&recordSchema=dcx&startRecord=1&maximumRecords=1000&version=1.2&operation=searchRetrieve&x-collection=GGC") as xml:
             doc = xmltodict.parse(xml.read())
             if 'srw:records' in doc['srw:searchRetrieveResponse']:
+                if not isinstance(doc['srw:searchRetrieveResponse']['srw:records']['srw:record'], list):
+                    doc['srw:searchRetrieveResponse']['srw:records']['srw:record'] = [doc['srw:searchRetrieveResponse']['srw:records']['srw:record']]
                 print("aantal regels:", len(doc['srw:searchRetrieveResponse']['srw:records']['srw:record']))
                 for i in range(len(doc['srw:searchRetrieveResponse']['srw:records']['srw:record'])):
                     out = {}
@@ -243,6 +245,6 @@ for album_id in albums:
         s = pd.Series(contribtuple, index=df.columns)
         df = df.append(s, ignore_index=True)
         index += 1
-    print(df)
+    # print(df)
     df.to_excel(writer, sheet_name = album_id )
 writer.save()
