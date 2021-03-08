@@ -54,30 +54,30 @@ def date_format(date):
     elif date.find('ca.') != -1:
         clean_date['ca'] = 'Q5727902'
         date = date.replace('ca.', '').replace('  ',' ').strip()
-    if re.match(r'^1[3-8]\d\d$', date):
+    if re.match(r'^1\d\d\d$', date):
         clean_date['clean'] = date
         return clean_date
     # voor 1687
-    if re.match(r'^voor 1[3-8]\d\d', date):
+    if re.match(r'^voor 1\d\d\d', date):
         clean_date['clean'] = re.sub(r'^voor (\d\d\d)\d', r'\1', date) + '0D'
         clean_date['end']   = re.sub(r'^voor (\d\d\d\d)', r'\1', date)
         return clean_date
     # 1666 of later
-    if re.match(r'^1[3-8]\d\d of later$', date):
+    if re.match(r'^1\d\d\d of later$', date):
         clean_date['clean'] = re.sub(r'^(\d\d\d)\d of later$', r'\1', date) + '0D'
         clean_date['start'] = re.sub(r'^(\d\d\d\d) of later$', r'\1', date)
         return clean_date
     # tussen 1849 en 1861 // tussen 1849 en 1863 // tussen 1849 en 1863
-    if re.match(r'^tussen 1[3-8]\d\d en 1[3-8]\d\d$', date):
-        clean_date['start'] = re.sub(r'^tussen (1[3-8]\d\d).+', r'\1', date)
-        clean_date['end']   = re.sub(r'^tussen \d{4} en (1[3-8]\d\d)$',   r'\1', date)
+    if re.match(r'^tussen 1\d\d\d en 1\d\d\d$', date):
+        clean_date['start'] = re.sub(r'^tussen (1\d\d\d).+', r'\1', date)
+        clean_date['end']   = re.sub(r'^tussen \d{4} en (1\d\d\d)$',   r'\1', date)
         if int(clean_date['start'][-1]) > 7 and int(clean_date['end'][-1]) < 4 and int(clean_date['start'][0:3]) + 1 == int(clean_date['end'][0:3]) -1:
             clean_date['clean'] = str(int(clean_date['start'][0:3]) + 1) +'0D'
         else:
             clean_date['clean'] = str(int(clean_date['start'][0:2]) + 1) +'00C'
         return clean_date
     # 9/10 1661
-    if re.match(r'^\d{1,2}\/\d{1,2} 1[3-8]', date):
+    if re.match(r'^\d{1,2}\/\d{1,2} 1\d', date):
         clean_date['clean'] = re.sub(r'^(\d{1,2})\/\d{1,2} (1\d\d\d)$', r'\2-\1', date)
         clean_date['clean'] = dt.datetime.strptime(clean_date['clean'],"%Y-%m").strftime("%Y-%m") # zerofill date
         clean_date['ca']    = 'Q5727902'
@@ -85,13 +85,13 @@ def date_format(date):
     
     for month in MONTH_LABELS:
         for mlabel in MONTH_LABELS[month]:
-            if re.match(r'^\d{1,2} '+mlabel+ r' 1[3-8]\d\d$', date):
+            if re.match(r'^\d{1,2} '+mlabel+ r' 1\d\d\d$', date):
                 #12 dec. 1830 // 23 mei 1459 // 3 maart 1888
-                clean_date['clean'] = re.sub(r'(\d{1,2}) '+mlabel + r' (1[3-8]\d\d)', r'\2-'+ month+ r'-\1', date)
+                clean_date['clean'] = re.sub(r'(\d{1,2}) '+mlabel + r' (1\d\d\d)', r'\2-'+ month+ r'-\1', date)
                 clean_date['clean'] = dt.datetime.strptime(clean_date['clean'],"%Y-%m-%d").strftime("%Y-%m-%d") # zerofill date
-            elif re.match(r'^'+mlabel+ r' 1[3-8]\d\d$', date):
+            elif re.match(r'^'+mlabel+ r' 1\d\d\d$', date):
                 #apr. 1848 // augustus 1765
-                clean_date['clean'] = re.sub(r'^'+mlabel+ r' (1[3-8]\d\d)', r'\1-'+ month, date)
+                clean_date['clean'] = re.sub(r'^'+mlabel+ r' (1\d\d\d)', r'\1-'+ month, date)
     if clean_date['clean'] == 'unknown value' and date != 's.a':
         print("niet opgeschone datum:", clean_date['stated_as'])
     return clean_date
@@ -100,7 +100,11 @@ albums = {}
 with open( 'dict.csv', 'r', encoding='UTF8' ) as file:
     reader = csv.reader(file, delimiter=';')
     for AA in reader:
-        album_id = str(AA[0]).strip()
+        try:
+            album_id = str(AA[0]).strip()
+        except:
+            print("GEEN VALIDE ID GEVONDEN IN dict.csv")
+            continue
         print("gevonden id:", album_id)
         outrows = {}
         with urllib.request.urlopen("http://jsru.kb.nl/sru?query=(EuropeanaTravel%20AND%20"+album_id+")&recordSchema=dcx&startRecord=1&maximumRecords=1000&version=1.2&operation=searchRetrieve&x-collection=GGC") as xml:
@@ -112,7 +116,11 @@ with open( 'dict.csv', 'r', encoding='UTF8' ) as file:
                 for i in range(len(doc['srw:searchRetrieveResponse']['srw:records']['srw:record'])):
                     out = {}
                     row = doc['srw:searchRetrieveResponse']['srw:records']['srw:record'][i]['srw:recordData']['srw_dc:dc']
-                    out['album_name'] = [x['#text'] for x in row['dcterms:isPartOf'] if '@dcx:recordIdentifier' in x][0]
+                    try:
+                        out['album_name'] = [x['#text'] for x in row['dcterms:isPartOf'] if '@dcx:recordIdentifier' in x][0]
+                    except IndexError as e:
+                        out['album_name'] = "GEEN ALBUM NAAM GEVONDEN"
+                        print("!!! Bijdrage zonder albumnaam gevonden")
                     out['album_name'] = re.sub(r'(Album amicorum van )?(.+?);.+', r'\2', out['album_name']).strip()
                     out['album_code'] = "AA"+"".join(re.findall(r'[A-Z]', out['album_name']))
                     
