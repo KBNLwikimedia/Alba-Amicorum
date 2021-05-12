@@ -16,9 +16,9 @@ Using its REST API, we want to mimick (parts of) the [Category:Contributors to t
 
 From the [JSON response of the API](https://commons.wikimedia.org/w/api.php?action=query&generator=categorymembers&gcmlimit=500&gcmnamespace=6&gcmtitle=Category:Contributors_to_the_album_amicorum_Jacobus_Heyblocq&format=json) and using this [Python script](scripts/bijdragersAAJH-smoelenboek-CommonsAPI.py) we can generate a [basic HTML image gallery/smoelenboek of contributors](bijdragersAAJH-smoelenboek-CommmonsAPI.html). The resulting HTML page looks like this (d.d. 12-05-2021) :
 
-  <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - CommmonsAPI - 31-12-2020.png" width="100%" align="left"/></kbd><br clear="all"/>
+  <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - CommmonsAPI - 12-05-2021.png" width="100%" align="left"/></kbd><br clear="all"/>
 
-The disadvantage of this approach: Wikimedians can adjust categorizations on Commons as they see fit. As a result, images can disappear from the above API call, or multiple images of 1 particular contributor can appear in the JSON response. In other words, the number of images in the resulting facebook may change, without one noticing.
+The disadvantage of this approach: Wikimedians can adjust categorizations on Commons as they see fit. As a result, images can disappear from the above API call, or multiple images of 1 particular contributor can appear in the JSON response. In other words, the number of images in the resulting facebook may change, without one noticing. Update 12-05-2021: images have indeed disappeared from the category between 8-12-2020 and 12-05-2021, as can be seen by comparing the above screenshots with those timestamps.
 
 ### 2) SPARQL query on Wikidata
 In the Wikidata item *[Album amicorum of Jacobus Heyblocq (1623-1690), rector of the Latin school in Amsterdam (Q72752496)](https://www.wikidata.org/wiki/Q72752496)*, all contributors to this album are included in the property [contributor to the creative work or subject (P767)](https://www.wikidata.org/wiki/Property:P767). As a result, we can gather all those persons using [the SPARQL query below](https://w.wiki/tBE) and then display their images/faces in a ready-made gallery in the Wikidata interface
