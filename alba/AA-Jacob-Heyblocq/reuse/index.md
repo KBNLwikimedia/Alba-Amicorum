@@ -11,7 +11,7 @@ This section is about **reusing AAJH content** (data & images, see [project page
 
 We can do this in multiple ways:
 
-### 1) HTML image gallery/smoelenboek based on the Wikimedia Commons API
+### 1) HTML facebook based on the Wikimedia Commons API
 Using its REST API, we want to mimick (parts of) the [Category:Contributors to the album amicorum Jacobus Heyblocq](https://commons.wikimedia.org/wiki/Category:Contributors_to_the_album_amicorum_Jacobus_Heyblocq) on Wikimedia Commons. This category looks like this (d.d. 8-12-2020) 
 
   <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - Wikimedia Commons Category - 08-12-2020.png" width="100%" align="left"/></kbd><br clear="all"/>
@@ -53,7 +53,7 @@ The  facebook resulting from the above query looks like this:
 <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - Wikidata SPARQL gallery - 08-12-2020.PNG" width="100%" align="left"/></kbd>
 <br clear="all"/>
 
-### 3) HTML image gallery/smoelenboek based on the Wikidata SPARQL API with JSON response
+### 3) HTML facebok based on the Wikidata SPARQL API with a JSON response
 When running a SPARQL query in the Wikidata query interface, we can have the result displayed directly in that interface, as shown above. However, we can also request the search result as a JSON response and then build a custom/DIY interface with it ourselves. We do this as follows:
 
   1) Using [the SPARQL query below](https://w.wiki/soe), we first request some data about the album contributors directly in the Wikidata query interface
