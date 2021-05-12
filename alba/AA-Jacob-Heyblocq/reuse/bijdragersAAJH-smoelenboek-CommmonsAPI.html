@@ -1,80 +1,246 @@
-# Script for https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden/Smoelenboek_bijdragers_AAJH#2)_Commons_API
-# Also used on Github for
-# https://github.com/KBNLwikimedia/Alba-Amicorum/tree/main/alba/AA-Jacob-Heyblocq/reuse and
-# https://kbnlwikimedia.github.io/Alba-Amicorum/alba/AA-Jacob-Heyblocq/reuse/
-#
-# We request the contributors to the album amicorum (https://commons.wikimedia.org/wiki/Category:Contributors_to_the_album_amicorum_Jacobus_Heyblocq)
-# in json format from the API on Wikimedia Commons.
-# https://commons.wikimedia.org/w/api.php?action=query&generator=categorymembers&gcmlimit=500&gcmnamespace=6&gcmtitle=Category:Contributors_to_the_album_amicorum_Jacobus_Heyblocq&format=json
-# We only request the File: pages (the images), with gcmnamespace=6.
-# We process this json into a basic image thumb gallery ('facebook', Dutch:smoelenboek) in HTML, using the Python script below
-
-######################################################################
-import json
-import requests
-import hashlib
-import urllib.parse
-from bs4 import BeautifulSoup
-
-# https://stackoverflow.com/questions/33689980/get-thumbnail-image-from-wikimedia-commons
-def get_wc_thumb(image, width): # image = e.g. from Wikidata, width in pixels
-    image = image.replace(' ', '_') # need to replace spaces with underline
-    m = hashlib.md5()
-    m.update(image.encode('utf-8'))
-    d = m.hexdigest()
-    return "https://upload.wikimedia.org/wikipedia/commons/thumb/"+d[0]+'/'+d[0:2]+'/'+image+'/'+str(width)+'px-'+image
-
-######################################################################
-HTMLtemplate ="""
 <html>
-<head>
-<!-- # HTML facebook (Dutch: smoelenboek) for https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden#2)_Commons_API
---> 
-<meta http-equiv='content-type' content='text/html;charset=utf-8'/>
-<link rel="stylesheet" href="./css/bijdragersAAJH-smoelenboek.css"> 
-<title>Facebook of contributors to the album amicorum  of Jacob Heyblocq - Demo for using the Wikimedia Commons API</title>
-</head>
-<body>
-<h1>Facebook of contributors to the <a href="https://www.kb.nl/themas/vriendenboeken/verwoede-verzamelaars/jacob-heyblocqs-vriendenboek" 
-target="_blank">album amicorum  of Jacob Heyblocq</a> - Demo for using the Wikimedia Commons API</h1>
-<ul>
-<li>Category on Wikimedia Commons: <a href="https://commons.wikimedia.org/wiki/Category:Contributors_to_the_album_amicorum_Jacobus_Heyblocq" 
-target="_blank">https://commons.wikimedia.org/wiki/Category:Contributors_to_the_album_amicorum_Jacobus_Heyblocq</a></li>
-<li>Explanations & context in Dutch, on Wikipedia: <a href="https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden/Smoelenboek_bijdragers_AAJH#2)_Commons_API" target="_blank">https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden/Smoelenboek_bijdragers_AAJH#2)_Commons_API</a></li>
-<li>Explanations & context in English, on Github: <a href="https://kbnlwikimedia.github.io/Alba-Amicorum/alba/AA-Jacob-Heyblocq/reuse/" target="_blank">https://kbnlwikimedia.github.io/Alba-Amicorum/alba/AA-Jacob-Heyblocq/reuse/</a> and 
-<a href="https://github.com/KBNLwikimedia/Alba-Amicorum/tree/main/alba/AA-Jacob-Heyblocq/reuse" target="_blank">https://github.com/KBNLwikimedia/Alba-Amicorum/tree/main/alba/AA-Jacob-Heyblocq/reuse</li>
-</ul>
-<div class="fiveColumnGrid">
-{gallery}
-</div>
-</body>
+ <head>
+  <!-- # HTML facebook (Dutch: smoelenboek) for https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden#2)_Commons_API
+-->
+  <meta content="text/html;charset=utf-8" http-equiv="content-type"/>
+  <link href="./css/bijdragersAAJH-smoelenboek.css" rel="stylesheet"/>
+  <title>
+   Facebook of contributors to the album amicorum  of Jacob Heyblocq - Demo for using the Wikimedia Commons API
+  </title>
+ </head>
+ <body>
+  <h1>
+   Facebook of contributors to the
+   <a href="https://www.kb.nl/themas/vriendenboeken/verwoede-verzamelaars/jacob-heyblocqs-vriendenboek" target="_blank">
+    album amicorum  of Jacob Heyblocq
+   </a>
+   - Demo for using the Wikimedia Commons API
+  </h1>
+  <ul>
+   <li>
+    Category on Wikimedia Commons:
+    <a href="https://commons.wikimedia.org/wiki/Category:Contributors_to_the_album_amicorum_Jacobus_Heyblocq" target="_blank">
+     https://commons.wikimedia.org/wiki/Category:Contributors_to_the_album_amicorum_Jacobus_Heyblocq
+    </a>
+   </li>
+   <li>
+    Explanations &amp; context in Dutch, on Wikipedia:
+    <a href="https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden/Smoelenboek_bijdragers_AAJH#2)_Commons_API" target="_blank">
+     https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden/Smoelenboek_bijdragers_AAJH#2)_Commons_API
+    </a>
+   </li>
+   <li>
+    Explanations &amp; context in English, on Github:
+    <a href="https://kbnlwikimedia.github.io/Alba-Amicorum/alba/AA-Jacob-Heyblocq/reuse/" target="_blank">
+     https://kbnlwikimedia.github.io/Alba-Amicorum/alba/AA-Jacob-Heyblocq/reuse/
+    </a>
+    and
+    <a href="https://github.com/KBNLwikimedia/Alba-Amicorum/tree/main/alba/AA-Jacob-Heyblocq/reuse" target="_blank">
+     https://github.com/KBNLwikimedia/Alba-Amicorum/tree/main/alba/AA-Jacob-Heyblocq/reuse
+    </a>
+   </li>
+  </ul>
+  <div class="fiveColumnGrid">
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Gerbrand van den Eeckhout selfportrait 1647.jpg" target="_blank">
+     <img alt="Gerbrand van den Eeckhout selfportrait 1647" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Gerbrand_van_den_Eeckhout_selfportrait_1647.jpg/300px-Gerbrand_van_den_Eeckhout_selfportrait_1647.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Gerbrand van den Eeckhout selfportrait 1647.jpg" target="_blank">
+      Gerbrand van den Eeckhout selfportrait 1647
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Claudius Salmasius 1588-1653.jpg" target="_blank">
+     <img alt="Claudius Salmasius 1588-1653" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Claudius_Salmasius_1588-1653.jpg/300px-Claudius_Salmasius_1588-1653.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Claudius Salmasius 1588-1653.jpg" target="_blank">
+      Claudius Salmasius 1588-1653
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Constantijn Huygens (1596-1687) by Caspar Netscher.jpg" target="_blank">
+     <img alt="Constantijn Huygens (1596-1687) by Caspar Netscher" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Constantijn_Huygens_%281596-1687%29_by_Caspar_Netscher.jpg/300px-Constantijn_Huygens_%281596-1687%29_by_Caspar_Netscher.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Constantijn Huygens (1596-1687) by Caspar Netscher.jpg" target="_blank">
+      Constantijn Huygens (1596-1687) by Caspar Netscher
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Daniel Voetius, hoogleraar Logica en metafysica Universiteit Utrecht (1629-1660).jpg" target="_blank">
+     <img alt="Daniel Voetius, hoogleraar Logica en metafysica Universiteit Utrecht (1629-1660)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Daniel_Voetius%2C_hoogleraar_Logica_en_metafysica_Universiteit_Utrecht_%281629-1660%29.jpg/300px-Daniel_Voetius%2C_hoogleraar_Logica_en_metafysica_Universiteit_Utrecht_%281629-1660%29.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Daniel Voetius, hoogleraar Logica en metafysica Universiteit Utrecht (1629-1660).jpg" target="_blank">
+      Daniel Voetius, hoogleraar Logica en metafysica Universiteit Utrecht (1629-1660)
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Portret van Reyer Anslo.jpg" target="_blank">
+     <img alt="Portret van Reyer Anslo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Portret_van_Reyer_Anslo.jpg/300px-Portret_van_Reyer_Anslo.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Portret van Reyer Anslo.jpg" target="_blank">
+      Portret van Reyer Anslo
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Focquenbroch.jpg" target="_blank">
+     <img alt="Focquenbroch" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Focquenbroch.jpg/300px-Focquenbroch.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Focquenbroch.jpg" target="_blank">
+      Focquenbroch
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Gerardus Johannes Vossius (1577-1649), by Anonymous.jpg" target="_blank">
+     <img alt="Gerardus Johannes Vossius (1577-1649), by Anonymous" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Gerardus_Johannes_Vossius_%281577-1649%29%2C_by_Anonymous.jpg/300px-Gerardus_Johannes_Vossius_%281577-1649%29%2C_by_Anonymous.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Gerardus Johannes Vossius (1577-1649), by Anonymous.jpg" target="_blank">
+      Gerardus Johannes Vossius (1577-1649), by Anonymous
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:GisbertusVoetius.jpg" target="_blank">
+     <img alt="GisbertusVoetius" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/GisbertusVoetius.jpg/300px-GisbertusVoetius.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:GisbertusVoetius.jpg" target="_blank">
+      GisbertusVoetius
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:J vondel.jpg" target="_blank">
+     <img alt="J vondel" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/J_vondel.jpg/300px-J_vondel.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:J vondel.jpg" target="_blank">
+      J vondel
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Jacob van der Does (1623-1673).jpg" target="_blank">
+     <img alt="Jacob van der Does (1623-1673)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Jacob_van_der_Does_%281623-1673%29.jpg/300px-Jacob_van_der_Does_%281623-1673%29.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Jacob van der Does (1623-1673).jpg" target="_blank">
+      Jacob van der Does (1623-1673)
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Jacob Westerbaen.jpg" target="_blank">
+     <img alt="Jacob Westerbaen" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Jacob_Westerbaen.jpg/300px-Jacob_Westerbaen.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Jacob Westerbaen.jpg" target="_blank">
+      Jacob Westerbaen
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Jan Amos Comenius (Komensky) (1592-1670). Tsjechisch humanist en pedagoog. Als voorganger van de Moravische of Boheemse Broedergemeente verdreven en sedert 1656 gevestigd te Amsterdam Rijksmuseum SK-A-2161.jpeg" target="_blank">
+     <img alt="Jan Amos Comenius (Komensky) (1592-1670)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Jan_Amos_Comenius_%28Komensky%29_%281592-1670%29._Tsjechisch_humanist_en_pedagoog._Als_voorganger_van_de_Moravische_of_Boheemse_Broedergemeente_verdreven_en_sedert_1656_gevestigd_te_Amsterdam_Rijksmuseum_SK-A-2161.jpeg/300px-Jan_Amos_Comenius_%28Komensky%29_%281592-1670%29._Tsjechisch_humanist_en_pedagoog._Als_voorganger_van_de_Moravische_of_Boheemse_Broedergemeente_verdreven_en_sedert_1656_gevestigd_te_Amsterdam_Rijksmuseum_SK-A-2161.jpeg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Jan Amos Comenius (Komensky) (1592-1670). Tsjechisch humanist en pedagoog. Als voorganger van de Moravische of Boheemse Broedergemeente verdreven en sedert 1656 gevestigd te Amsterdam Rijksmuseum SK-A-2161.jpeg" target="_blank">
+      Jan Amos Comenius (Komensky) (1592-1670)
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Jan Bronchorst.jpg" target="_blank">
+     <img alt="Jan Bronchorst" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Jan_Bronchorst.jpg/300px-Jan_Bronchorst.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Jan Bronchorst.jpg" target="_blank">
+      Jan Bronchorst
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Joh Polyander a Kerkhoven.jpg" target="_blank">
+     <img alt="Joh Polyander a Kerkhoven" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Joh_Polyander_a_Kerkhoven.jpg/300px-Joh_Polyander_a_Kerkhoven.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Joh Polyander a Kerkhoven.jpg" target="_blank">
+      Joh Polyander a Kerkhoven
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Jacob Cats by Michiel Jansz van Mierevelt.jpg" target="_blank">
+     <img alt="Jacob Cats by Michiel Jansz van Mierevelt" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Jacob_Cats_by_Michiel_Jansz_van_Mierevelt.jpg/300px-Jacob_Cats_by_Michiel_Jansz_van_Mierevelt.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Jacob Cats by Michiel Jansz van Mierevelt.jpg" target="_blank">
+      Jacob Cats by Michiel Jansz van Mierevelt
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Portret van Cornelius Sladus, RP-P-1910-6870.jpg" target="_blank">
+     <img alt="Portret van Cornelius Sladus, RP-P-1910-6870" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Portret_van_Cornelius_Sladus%2C_RP-P-1910-6870.jpg/300px-Portret_van_Cornelius_Sladus%2C_RP-P-1910-6870.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Portret van Cornelius Sladus, RP-P-1910-6870.jpg" target="_blank">
+      Portret van Cornelius Sladus, RP-P-1910-6870
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Portret van Franciscus Snellinx, RP-P-1885-A-9191.jpg" target="_blank">
+     <img alt="Portret van Franciscus Snellinx, RP-P-1885-A-9191" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Portret_van_Franciscus_Snellinx%2C_RP-P-1885-A-9191.jpg/300px-Portret_van_Franciscus_Snellinx%2C_RP-P-1885-A-9191.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Portret van Franciscus Snellinx, RP-P-1885-A-9191.jpg" target="_blank">
+      Portret van Franciscus Snellinx, RP-P-1885-A-9191
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Portret van Simon Simonides op 46-jarige leeftijd, RP-P-1885-A-9330.jpg" target="_blank">
+     <img alt="Portret van Simon Simonides op 46-jarige leeftijd, RP-P-1885-A-9330" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Portret_van_Simon_Simonides_op_46-jarige_leeftijd%2C_RP-P-1885-A-9330.jpg/300px-Portret_van_Simon_Simonides_op_46-jarige_leeftijd%2C_RP-P-1885-A-9330.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Portret van Simon Simonides op 46-jarige leeftijd, RP-P-1885-A-9330.jpg" target="_blank">
+      Portret van Simon Simonides op 46-jarige leeftijd, RP-P-1885-A-9330
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Rembrant Self-Portrait, 1660.jpg" target="_blank">
+     <img alt="Rembrant Self-Portrait, 1660" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Rembrant_Self-Portrait%2C_1660.jpg/300px-Rembrant_Self-Portrait%2C_1660.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Rembrant Self-Portrait, 1660.jpg" target="_blank">
+      Rembrant Self-Portrait, 1660
+     </a>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Samuel Maresius (1599-1673), by Jacob van Meurs (I).jpg" target="_blank">
+     <img alt="Samuel Maresius (1599-1673), by Jacob van Meurs (I)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Samuel_Maresius_%281599-1673%29%2C_by_Jacob_van_Meurs_%28I%29.jpg/300px-Samuel_Maresius_%281599-1673%29%2C_by_Jacob_van_Meurs_%28I%29.jpg"/>
+    </a>
+    <figurecaption>
+     <a href="https://commons.wikimedia.org/wiki/File:Samuel Maresius (1599-1673), by Jacob van Meurs (I).jpg" target="_blank">
+      Samuel Maresius (1599-1673), by Jacob van Meurs (I)
+     </a>
+    </figurecaption>
+   </figure>
+  </div>
+ </body>
 </html>
-"""
-#######################################
-gallery = ""
-wmc_baseurl="https://commons.wikimedia.org/wiki/"
-wmc_jsonurl = "https://commons.wikimedia.org/w/api.php?action=query&generator=categorymembers&gcmlimit=500&gcmnamespace=6" \
-      "&gcmtitle=Category:Contributors_to_the_album_amicorum_Jacobus_Heyblocq&format=json"
-
-r = requests.get(wmc_jsonurl)
-data = json.loads(r.text)
-contribs = list(data['query']['pages'].values())
-#print(contribs)
-for c in contribs:
-    contrib = c['title']
-    contrib_thumb = urllib.parse.quote(get_wc_thumb(contrib.split("File:")[1], 300)).replace('%3A', ':')
-    #Above taken from:  https://stackoverflow.com/questions/1695183/how-to-percent-encode-url-parameters-in-python
-    #print(contrib_thumb)
-    contrib_link = wmc_baseurl + contrib
-    contrib_name = contrib.split("File:")[1].split(".")[0].replace("_", " ")
-    gallery += f"<figure class='fiveColumnGridItem'><a target='_blank' href='{contrib_link}'><img src='{contrib_thumb}' alt='{contrib_name}'/></a>" \
-               f"<figurecaption><a target='_blank' href='{contrib_link}'>{contrib_name}</a></figurecaption></figure>"
-
-#print(gallery)
-
-html = HTMLtemplate.format(gallery=gallery)
-soup = BeautifulSoup(html, 'html.parser')
-prettyHTML = soup.prettify()
-HTMLoutputfile = open("../bijdragersAAJH-smoelenboek-CommmonsAPI.html", "w")
-HTMLoutputfile.write(prettyHTML)
-HTMLoutputfile.close()
