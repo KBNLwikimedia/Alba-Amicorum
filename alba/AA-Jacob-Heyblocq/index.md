@@ -1,3 +1,5 @@
+![Alba banner](../../banners/AlbaAmicorumKB_BannerWikimedia_EN.jpg)
+
 # Album amicorum Jacob Heyblocq
 Datastory & visualisation of Jacob Heyblocq's album amicorum using Wikidata & Wikimedia Commons (and maybe Wikipedia)
 
