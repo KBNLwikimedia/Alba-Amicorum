@@ -1,5 +1,7 @@
-# Basic script for
-# https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden/Smoelenboek_bijdragers_AAJH#4)_SPARQL-query_op_Wikidata_met_JSON-respons
+# Basic script for https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden/Smoelenboek_bijdragers_AAJH#4)_SPARQL-query_op_Wikidata_met_JSON-respons
+# Also used on Github for
+# https://github.com/KBNLwikimedia/Alba-Amicorum/tree/main/alba/AA-Jacob-Heyblocq/reuse/index.md and
+# https://kbnlwikimedia.github.io/Alba-Amicorum/alba/AA-Jacob-Heyblocq/reuse/
 
 # We request data about the contributors to the album amicorum from the SPARQL endpoint on Wikidata via
 # https://w.wiki/soe
@@ -18,7 +20,7 @@
 # Or, the above query with a json response:
 # https://query.wikidata.org/sparql?query=SELECT%20DISTINCT%20%3Fcontributor%20%3FcontributorLabel%20%3FcontributorDescription%20%3Fimage%20%3Fcommonscat%20%3FwparticleNL%20WHERE%20%7B%20%0A%20%20BIND(wd%3AQ72752496%20as%20%3Falbum)%0A%20%20%3Falbum%20wdt%3AP767%20%3Fcontributor.%0A%20%20%3Fcontributor%20wdt%3AP18%20%3Fimage.%0A%20%20OPTIONAL%7B%3Fcontributor%20wdt%3AP373%20%3Fcommonscat.%7D%0A%20%20OPTIONAL%7B%3FwparticleNL%20schema%3Aabout%20%3Fcontributor.%0A%20%20%20%20%20%20%20%20%20%20%20%3FwparticleNL%20schema%3AisPartOf%20%3Chttps%3A%2F%2Fnl.wikipedia.org%2F%3E.%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22nl%22.%20%7D%0A%7D%20%0AORDER%20BY%20%3FcontributorLabel&format=json
 
-# We process this json into a basic image thumb gallery (facebook, Dutch:smoelenboek) in HTML, using the Python script below
+# We process this json into a basic image thumb gallery (facebook, Dutch:smoelenboek) in HTML, using the code below
 
 ######################################################################
 import json
@@ -33,16 +35,17 @@ HTMLtemplate ="""
 <!-- # HTML smoelenboek bij https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden#4)_SPARQL-query_op_Wikidata_met_JSON-respons --> 
 <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
 <link rel="stylesheet" href="./css/bijdragersAAJH-smoelenboek.css"> 
-<title>Smoelenboek bijdragers vriendenboek Jacob Heyblocq - Demo o.b.v. SPARQL-query op Wikidata met JSON-respons</title>
+
+<title>Facebook of contributors to the album amicorum  of Jacob Heyblocq - Demo for using a SPARQL-query on Wikidata with JSON-response</title>
 </head>
 <body>
-<h1>Smoelenboek bijdragers <a href="https://www.kb.nl/themas/vriendenboeken/verwoede-verzamelaars/jacob-heyblocqs-vriendenboek" 
-target="_blank">Vriendenboek Jacob Heyblocq</a> - Demo o.b.v. SPARQL-query op Wikidata met JSON-respons</h1>
+<h1>Facebook of contributors to the <a href="https://www.kb.nl/themas/vriendenboeken/verwoede-verzamelaars/jacob-heyblocqs-vriendenboek" 
+target="_blank">album amicorum  of Jacob Heyblocq</a> - Demo for using a SPARQL-query on Wikidata with JSON-response</h1>
 <ul>
-<li>SPARQL query op Wikidata: <a href="https://w.wiki/soe" target="_blank">https://w.wiki/soe</a></li>
-<li>Uitleg & context in het Nederlands, op Wikipedia: <a href="https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden#4)_SPARQL-query_op_Wikidata_met_JSON-respons" target="_blank">https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden#4)_SPARQL-query_op_Wikidata_met_JSON-respons</a></li>
-<li>Uitleg & context in het Engels, op Github: <a href="https://github.com/KBNLwikimedia/kbnlwikimedia.github.io/blob/master/AlbaAmicorum/AlbumAmicorumJacobHeyblocq/reuse" 
-target="_blank">https://github.com/KBNLwikimedia/kbnlwikimedia.github.io/blob/master/AlbaAmicorum/AlbumAmicorumJacobHeyblocq/reuse</a></li>
+<li>SPARQL query on Wikidata: <a href="https://w.wiki/soe" target="_blank">https://w.wiki/soe</a>, with <a href="https://query.wikidata.org/sparql?query=SELECT%20DISTINCT%20%3Fcontributor%20%3FcontributorLabel%20%3FcontributorDescription%20%3Fimage%20%3Fcommonscat%20%3FwparticleNL%20WHERE%20%7B%20%0A%20%20BIND(wd%3AQ72752496%20as%20%3Falbum)%0A%20%20%3Falbum%20wdt%3AP767%20%3Fcontributor.%0A%20%20%3Fcontributor%20wdt%3AP18%20%3Fimage.%0A%20%20OPTIONAL%7B%3Fcontributor%20wdt%3AP373%20%3Fcommonscat.%7D%0A%20%20OPTIONAL%7B%3FwparticleNL%20schema%3Aabout%20%3Fcontributor.%0A%20%20%20%20%20%20%20%20%20%20%20%3FwparticleNL%20schema%3AisPartOf%20%3Chttps%3A%2F%2Fnl.wikipedia.org%2F%3E.%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22nl%22.%20%7D%0A%7D%20%0AORDER%20BY%20%3FcontributorLabel&format=json" target="_blank">JSON output</a></li>
+<li>Explanations & context in Dutch, on Wikipedia: <a href="https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden/Smoelenboek_bijdragers_AAJH#4)_SPARQL-query_op_Wikidata_met_JSON-respons" target="_blank">https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden/Smoelenboek_bijdragers_AAJH#4)_SPARQL-query_op_Wikidata_met_JSON-respons</a></li>
+<li>Explanations & context in English, on Github: <a href="https://kbnlwikimedia.github.io/Alba-Amicorum/alba/AA-Jacob-Heyblocq/reuse/" target="_blank">https://kbnlwikimedia.github.io/Alba-Amicorum/alba/AA-Jacob-Heyblocq/reuse/</a> and 
+<a href="https://github.com/KBNLwikimedia/Alba-Amicorum/tree/main/alba/AA-Jacob-Heyblocq/reuse/index.md" target="_blank">https://github.com/KBNLwikimedia/Alba-Amicorum/tree/main/alba/AA-Jacob-Heyblocq/reuse/index.md</li>
 </ul>
 <div class="fiveColumnGrid">
 {gallery}
