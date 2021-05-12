@@ -110,6 +110,6 @@ We can further develop this HTML iframe approach into a design that fits seamles
 
   <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" width="100%" align="left"/></kbd><br clear="all"/>
 
-In addition to this image gallery, we can also make [a list](bijdragersAAJH-lijst-SparqlHTMLembed-mockupkbnl.html) and a [cloud of professions](bijdragersAAJH-beroepen-SparqlHTMLembed-mockupkbnl.html) of the album contributors in the design of the KB website, again based on embedded HTML iframes containing Wikidata SPARQL queries:
+In addition to this image gallery, we can also make [a list](bijdragersAAJH-lijst-SparqlHTMLembed-mockupkbnl.html) and a [cloud of professions](bijdragersAAJH-beroepen-SparqlHTMLembed-mockupkbnl.html) (*Dutch: beroepenwolk*) of the album contributors in the design of the KB website, again based on embedded HTML iframes containing Wikidata SPARQL queries:
 
   <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Lijst - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" height="250"/></kbd><kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Beroepenwolk - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" height="250"/></kbd><br clear="all"/>
