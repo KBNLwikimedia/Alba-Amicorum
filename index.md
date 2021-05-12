@@ -1,6 +1,6 @@
 ![Banner alba](/banners/AlbaAmicorumKB_BannerWikimedia_EN.jpg)
 
-## Alba amicorum of the KB
+# Alba amicorum of the KB
 
 We are currently collecting data of the alba amicorum (AA) of the KB and structuring them on Wikidata. We have three main sources we collect these data from: the KB catalogue, our LOD platform data.bibliotheken.nl and Europeana. 
 
