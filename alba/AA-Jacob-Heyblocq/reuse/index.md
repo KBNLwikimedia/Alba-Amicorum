@@ -54,37 +54,37 @@ The  facebook resulting from the above query looks like this:
 <br clear="all"/>
 
 ### 3) HTML image gallery/smoelenboek based on the Wikidata SPARQL API with JSON response
-When runnuing a SPARQL query in the Wikidata query interface, we have the result displayed directly (out of the box) in that interface, as shown above. However, we can also request the search result as a JSON response and then build a custom/DIY interface with it ourselves. We do this as follows:
+When running a SPARQL query in the Wikidata query interface, we can have the result displayed directly in that interface, as shown above. However, we can also request the search result as a JSON response and then build a custom/DIY interface with it ourselves. We do this as follows:
 
-1) Using [the SPARQL query below](https://w.wiki/soe), we first request some data about the album contributors directly in the Wikidata interface
+  1) Using [the SPARQL query below](https://w.wiki/soe), we first request some data about the album contributors directly in the Wikidata query interface
 
-```
-SELECT DISTINCT ?contributor ?contributorLabel ?contributorDescription ?image ?commonscat ?wparticleNL WHERE { 
-  BIND(wd:Q72752496 as ?album)
-  ?album wdt:P767 ?contributor.
-  ?contributor wdt:P18 ?image.
-  OPTIONAL{?contributor wdt:P373 ?commonscat.}
-  OPTIONAL{?wparticleNL schema:about ?contributor.
-           ?wparticleNL schema:isPartOf <https://nl.wikipedia.org/>.}
-  SERVICE wikibase:label { bd:serviceParam wikibase:language "nl". }
-} 
-ORDER BY ?contributorLabel
-```
+  ```
+  SELECT DISTINCT ?contributor ?contributorLabel ?contributorDescription ?image ?commonscat ?wparticleNL WHERE { 
+    BIND(wd:Q72752496 as ?album)
+    ?album wdt:P767 ?contributor.
+    ?contributor wdt:P18 ?image.
+    OPTIONAL{?contributor wdt:P373 ?commonscat.}
+    OPTIONAL{?wparticleNL schema:about ?contributor.
+             ?wparticleNL schema:isPartOf <https://nl.wikipedia.org/>.}
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "nl". }
+  } 
+  ORDER BY ?contributorLabel
+  ```
 
-So we request
-- the Wikidata Q number (?contributor),
-- the name, the Dutch description and the image (but now without the dummy images),
-- the Dutch Wikipedia article and the Commons category (if available)
+  So we request
+  - the Wikidata Q number (*?contributor*),
+  - the Dutch name (label), description and the image (but now without the dummy images),
+  - the Dutch Wikipedia article and the Commons category (if available)
 
-of the contributors, because we want to display this data in the DIY interface.
+  of every contributor, because we want to display this data in our DIY interface.
 
-2) Once we have checked that the query and search results are OK, we then request the same response in JSON:
+  2) Once we have checked that the query and search results are OK, we then request the same response in JSON:
 
-<sub>https://query.wikidata.org/sparql?query=SELECT%20DISTINCT%20%3Fcontributor%20%3FcontributorLabel%20%3FcontributorDescription%20%3Fimage%20%3Fcommonscat%20%3FwparticleNL%20WHERE%20%7B%20%0A%20%20BIND(wd%3AQ72752496%20as%20%3Falbum)%0A%20%20%3Falbum%20wdt%3AP767%20%3Fcontributor.%0A%20%20%3Fcontributor%20wdt%3AP18%20%3Fimage.%0A%20%20OPTIONAL%7B%3Fcontributor%20wdt%3AP373%20%3Fcommonscat.%7D%0A%20%20OPTIONAL%7B%3FwparticleNL%20schema%3Aabout%20%3Fcontributor.%0A%20%20%20%20%20%20%20%20%20%20%20%3FwparticleNL%20schema%3AisPartOf%20%3Chttps%3A%2F%2Fnl.wikipedia.org%2F%3E.%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22nl%22.%20%7D%0A%7D%20%0AORDER%20BY%20%3FcontributorLabel&format=json</sub>
+   <sub>https://query.wikidata.org/sparql?query=SELECT%20DISTINCT%20%3Fcontributor%20%3FcontributorLabel%20%3FcontributorDescription%20%3Fimage%20%3Fcommonscat%20%3FwparticleNL%20WHERE%20%7B%20%0A%20%20BIND(wd%3AQ72752496%20as%20%3Falbum)%0A%20%20%3Falbum%20wdt%3AP767%20%3Fcontributor.%0A%20%20%3Fcontributor%20wdt%3AP18%20%3Fimage.%0A%20%20OPTIONAL%7B%3Fcontributor%20wdt%3AP373%20%3Fcommonscat.%7D%0A%20%20OPTIONAL%7B%3FwparticleNL%20schema%3Aabout%20%3Fcontributor.%0A%20%20%20%20%20%20%20%20%20%20%20%3FwparticleNL%20schema%3AisPartOf%20%3Chttps%3A%2F%2Fnl.wikipedia.org%2F%3E.%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22nl%22.%20%7D%0A%7D%20%0AORDER%20BY%20%3FcontributorLabel&format=json</sub>
 
-3) With this JSON we can now use [this Python script](https://github.com/KBNLwikimedia/kbnlwikimedia.github.io/blob/master/AlbaAmicorum/AlbumAmicorumJacobHeyblocq/reuse/scripts/bijdragersAAJH-smoelenboek-SparqlWikidataJson.py) create [this simple HTML photo gallery/smoelenboek](bijdragersAAJH-smoelenboek-SparqlWikidataJson.html). It looks like this:
+  3) With this JSON we can now use [this Python script](scripts/bijdragersAAJH-smoelenboek-SparqlWikidataJson.py) to create [this simple HTML photo gallery/smoelenboek](bijdragersAAJH-smoelenboek-SparqlWikidataJson.html).
 
-<kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - SparqlWikidataJson - 01-01-2021.png" width="100%" align="left"/></kbd><br clear="all"/>
+  <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - SparqlWikidataJson - 01-01-2021.png" width="100%" align="left"/></kbd><br clear="all"/>
 
 ### 4) Wikidata SPARQL + HTML-embed via iframe
 The facebook made above (see 2) can also be embedded in an HTML page by means of an HTML iframe. The basic code for that looks like this:
