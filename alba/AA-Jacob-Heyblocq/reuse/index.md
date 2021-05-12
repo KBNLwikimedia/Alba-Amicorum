@@ -50,7 +50,7 @@ Here, via [Q82985930](https://www.wikidata.org/wiki/Q82985930) + *?maledummyimag
 
 The  facebook resulting from the above query looks like this:
 
-<kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - Wikidata SPARQL gallery - 08-12-2020.PNG" width="100%" align="left"/></kbd>
+  <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - Wikidata SPARQL gallery - 08-12-2020.PNG" width="100%" align="left"/></kbd>
 <br clear="all"/>
 
 ### 3) HTML facebook based on the Wikidata SPARQL API with a JSON response
@@ -101,15 +101,15 @@ The facebook made above can also be embedded in an HTML page by means of an HTML
     </body>
 </html>
 ```
-This gives a [plain, unstyled facebook](bijdragersAAJH-smoelenboek-SparqlHTMLembed-plain.html) looking like this: 
+This results into a [plain, unstyled facebook in HTML](bijdragersAAJH-smoelenboek-SparqlHTMLembed-plain.html) looking like this: 
 
-<kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - SparqlHTMLembed-plain - 12-05-2021.png" width="100%" align="left"/></kbd><br clear="all"/>
+  <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - SparqlHTMLembed-plain - 12-05-2021.png" width="100%" align="left"/></kbd><br clear="all"/>
 
 #### kb.nl styling
 We can further develop this HTML iframe approach into a design that fits seamlessly into [the pages about the album on the KB website](https://www.kb.nl/themas/vriendenboeken/verwoede-verzamelaars/jacob-heyblocqs-vriendenboek), resulting into [an HTML-page](bijdragersAAJH-smoelenboek-SparqlHTMLembed-mockupkbnl.html) looking like this:
 
-<kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" width="100%" align="left"/></kbd><br clear="all"/>
+  <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" width="100%" align="left"/></kbd><br clear="all"/>
 
 In addition to this image gallery, we can also make [a list](bijdragersAAJH-lijst-SparqlHTMLembed-mockupkbnl.html) and a [cloud of professions](bijdragersAAJH-beroepen-SparqlHTMLembed-mockupkbnl.html) of the album contributors in the design of kb.nl, again based on embedded HTML iframes containing Wikidata SPARQL queries:
 
-<kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Lijst - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" height="250"/></kbd><kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Beroepenwolk - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" height="250"/></kbd><br clear="all"/>
+  <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Lijst - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" height="250"/></kbd><kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Beroepenwolk - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" height="250"/></kbd><br clear="all"/>
