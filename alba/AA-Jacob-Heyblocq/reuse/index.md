@@ -84,7 +84,7 @@ When running a SPARQL query in the Wikidata query interface, we can have the res
 
   3) With this JSON we can now use [this Python script](scripts/bijdragersAAJH-smoelenboek-SparqlWikidataJson.py) to create [this simple HTML photo gallery/smoelenboek](bijdragersAAJH-smoelenboek-SparqlWikidataJson.html).
 
-  <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - SparqlWikidataJson - 01-01-2021.png" width="100%" align="left"/></kbd><br clear="all"/>
+  <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - SparqlWikidataJson - 12-05-2021.png" width="100%" align="left"/></kbd><br clear="all"/>
 
 ### 4) Wikidata SPARQL + HTML-embed via iframe
 The facebook made above (see 2) can also be embedded in an HTML page by means of an HTML iframe. The basic code for that looks like this:
