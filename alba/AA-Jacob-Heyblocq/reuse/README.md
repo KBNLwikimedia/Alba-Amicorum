@@ -1,4 +1,4 @@
-![Alba banner](../../banners/AlbaAmicorumKB_BannerWikimedia_EN.jpg)
+![Alba banner](../../../banners/AlbaAmicorumKB_BannerWikimedia_EN.jpg)
 
 # Resusing the album amicorum Jacob Heyblocq
 
