@@ -53,7 +53,7 @@ The  facebook resulting from the above query looks like this:
   <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - Wikidata SPARQL gallery - 08-12-2020.PNG" width="100%" align="left"/></kbd>
 <br clear="all"/>
 
-### 3) HTML facebook based on the Wikidata SPARQL API with a JSON response
+### 3) HTML facebook based on the Wikidata SPARQL service with a JSON response
 When running a SPARQL query in the Wikidata query interface, we can have the result displayed directly in that interface, as shown above. However, we can also request the search result as a JSON response and then build a custom/DIY interface with it ourselves. We do this as follows:
 
   1) Using [the SPARQL query below](https://w.wiki/soe), we first request some data about the album contributors directly in the Wikidata query interface
