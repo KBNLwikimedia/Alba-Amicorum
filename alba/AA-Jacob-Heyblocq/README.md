@@ -1,6 +1,12 @@
-# Album amicorum Jacob Heyblocq
-Datastory & visualisation of Jacob Heyblocq's album amicorum using Wikidata & Wikimedia Commons (and maybe Wikipedia)
+![Alba banner](../../banners/AlbaAmicorumKB_BannerWikimedia_EN.jpg)
 
+# Album amicorum Jacob Heyblocq
+Datastories & visualisations of Jacob Heyblocq's album amicorum using Wikidata & Wikimedia Commons (and maybe Wikipedia)
+
+## [Resusing the album amicorum Jacob Heyblocq](https://kbnlwikimedia.github.io/Alba-Amicorum/alba/AA-Jacob-Heyblocq/reuse/)
+*This section is about **reusing AAJH content** (data & images, see [project page](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Jacob_Heyblocq)) that is stored in the Wikimedia infrastructure (= Wikidata + Wikimedia Commons + Wikipedia) in other (non-Wiki) sites, platforms, scripts, code, software etc.*
+
+## To sort out
 * [AA Jacob Heyblocq project page on Wikidata](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum/Jacob_Heyblocq)
 * [AA Jacob Heyblocq on kb.nl](https://www.kb.nl/themas/vriendenboeken/verwoede-verzamelaars/jacob-heyblocqs-vriendenboek)
 * [Jacob Heyblocq on nl:wiki](https://nl.wikipedia.org/wiki/Jacobus_Heiblocq)
