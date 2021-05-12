@@ -4,34 +4,42 @@
   <meta content="text/html;charset=utf-8" http-equiv="content-type"/>
   <link href="./css/bijdragersAAJH-smoelenboek.css" rel="stylesheet"/>
   <title>
-   Smoelenboek bijdragers vriendenboek Jacob Heyblocq - Demo o.b.v. SPARQL-query op Wikidata met JSON-respons
+   Facebook of contributors to the album amicorum  of Jacob Heyblocq - Demo for using a SPARQL-query on Wikidata with JSON-response
   </title>
  </head>
  <body>
   <h1>
-   Smoelenboek bijdragers
+   Facebook of contributors to the
    <a href="https://www.kb.nl/themas/vriendenboeken/verwoede-verzamelaars/jacob-heyblocqs-vriendenboek" target="_blank">
-    Vriendenboek Jacob Heyblocq
+    album amicorum  of Jacob Heyblocq
    </a>
-   - Demo o.b.v. SPARQL-query op Wikidata met JSON-respons
+   - Demo for using a SPARQL-query on Wikidata with JSON-response
   </h1>
   <ul>
    <li>
-    SPARQL query op Wikidata:
+    SPARQL query on Wikidata:
     <a href="https://w.wiki/soe" target="_blank">
      https://w.wiki/soe
     </a>
-   </li>
-   <li>
-    Uitleg &amp; context in het Nederlands, op Wikipedia:
-    <a href="https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden#4)_SPARQL-query_op_Wikidata_met_JSON-respons" target="_blank">
-     https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden#4)_SPARQL-query_op_Wikidata_met_JSON-respons
+    , with
+    <a href="https://query.wikidata.org/sparql?query=SELECT%20DISTINCT%20%3Fcontributor%20%3FcontributorLabel%20%3FcontributorDescription%20%3Fimage%20%3Fcommonscat%20%3FwparticleNL%20WHERE%20%7B%20%0A%20%20BIND(wd%3AQ72752496%20as%20%3Falbum)%0A%20%20%3Falbum%20wdt%3AP767%20%3Fcontributor.%0A%20%20%3Fcontributor%20wdt%3AP18%20%3Fimage.%0A%20%20OPTIONAL%7B%3Fcontributor%20wdt%3AP373%20%3Fcommonscat.%7D%0A%20%20OPTIONAL%7B%3FwparticleNL%20schema%3Aabout%20%3Fcontributor.%0A%20%20%20%20%20%20%20%20%20%20%20%3FwparticleNL%20schema%3AisPartOf%20%3Chttps%3A%2F%2Fnl.wikipedia.org%2F%3E.%7D%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22nl%22.%20%7D%0A%7D%20%0AORDER%20BY%20%3FcontributorLabel&amp;format=json" target="_blank">
+     JSON output
     </a>
    </li>
    <li>
-    Uitleg &amp; context in het Engels, op Github:
-    <a href="https://github.com/KBNLwikimedia/kbnlwikimedia.github.io/blob/master/AlbaAmicorum/AlbumAmicorumJacobHeyblocq/reuse" target="_blank">
-     https://github.com/KBNLwikimedia/kbnlwikimedia.github.io/blob/master/AlbaAmicorum/AlbumAmicorumJacobHeyblocq/reuse
+    Explanations &amp; context in Dutch, on Wikipedia:
+    <a href="https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden/Smoelenboek_bijdragers_AAJH#4)_SPARQL-query_op_Wikidata_met_JSON-respons" target="_blank">
+     https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden/Smoelenboek_bijdragers_AAJH#4)_SPARQL-query_op_Wikidata_met_JSON-respons
+    </a>
+   </li>
+   <li>
+    Explanations &amp; context in English, on Github:
+    <a href="https://kbnlwikimedia.github.io/Alba-Amicorum/alba/AA-Jacob-Heyblocq/reuse/" target="_blank">
+     https://kbnlwikimedia.github.io/Alba-Amicorum/alba/AA-Jacob-Heyblocq/reuse/
+    </a>
+    and
+    <a href="https://github.com/KBNLwikimedia/Alba-Amicorum/tree/main/alba/AA-Jacob-Heyblocq/reuse/index.md" target="_blank">
+     https://github.com/KBNLwikimedia/Alba-Amicorum/tree/main/alba/AA-Jacob-Heyblocq/reuse/index.md
     </a>
    </li>
   </ul>
@@ -61,15 +69,15 @@
     </figurecaption>
    </figure>
    <figure class="fiveColumnGridItem">
-    <a href="https://commons.wikimedia.org/wiki/File:Wenceslas%20Hollar%20-%20Andre%20Rivet.jpg" target="_blank">
-     <img alt="André Rivet" src="http://commons.wikimedia.org/wiki/Special:FilePath/Wenceslas%20Hollar%20-%20Andre%20Rivet.jpg?width=300"/>
+    <a href="https://commons.wikimedia.org/wiki/File:Portret%20van%20Andr%C3%A9%20Rivet%20%28Rivetus%29%20%281572-1651%29%2C%20hoogleraar%20Godgeleerdheid%20te%20Leiden%20BN%201180.tiff" target="_blank">
+     <img alt="André Rivet" src="http://commons.wikimedia.org/wiki/Special:FilePath/Portret%20van%20Andr%C3%A9%20Rivet%20%28Rivetus%29%20%281572-1651%29%2C%20hoogleraar%20Godgeleerdheid%20te%20Leiden%20BN%201180.tiff?width=300"/>
     </a>
     <figurecaption>
      <b>
       André Rivet
      </b>
      <br/>
-     Franse predikant, professor en theoloog (1572-1651)
+     Franse predikant, hoogleraar en theoloog (1572-1651)
      <br/>
      <br/>
      <li>
@@ -350,8 +358,8 @@
     </figurecaption>
    </figure>
    <figure class="fiveColumnGridItem">
-    <a href="https://commons.wikimedia.org/wiki/File:Dirk%20Graswinckel.jpg" target="_blank">
-     <img alt="Dirk Graswinckel" src="http://commons.wikimedia.org/wiki/Special:FilePath/Dirk%20Graswinckel.jpg?width=300"/>
+    <a href="https://commons.wikimedia.org/wiki/File:Portret%20van%20Theodorus%20Johannes%20Dirk%20Graswinckel%2C%20advocaat-fiscaal%20van%20Holland%2C%20jurist%20en%20humanist.%20Tevens%20van%20hij%20dichter%20en%20bevriend%20met%20P.C.%20Hooft.%20NL-HlmNHA%201477%2053009833.JPG" target="_blank">
+     <img alt="Dirk Graswinckel" src="http://commons.wikimedia.org/wiki/Special:FilePath/Portret%20van%20Theodorus%20Johannes%20Dirk%20Graswinckel%2C%20advocaat-fiscaal%20van%20Holland%2C%20jurist%20en%20humanist.%20Tevens%20van%20hij%20dichter%20en%20bevriend%20met%20P.C.%20Hooft.%20NL-HlmNHA%201477%2053009833.JPG?width=300"/>
     </a>
     <figurecaption>
      <b>
@@ -616,23 +624,28 @@
    </figure>
    <figure class="fiveColumnGridItem">
     <a href="https://commons.wikimedia.org/wiki/File:Portret%20van%20Isaac%20Le%20Maire%2C%20RP-P-OB-17.072.jpg" target="_blank">
-     <img alt="Isaacus Le Maire" src="http://commons.wikimedia.org/wiki/Special:FilePath/Portret%20van%20Isaac%20Le%20Maire%2C%20RP-P-OB-17.072.jpg?width=300"/>
+     <img alt="Isaac le Maire" src="http://commons.wikimedia.org/wiki/Special:FilePath/Portret%20van%20Isaac%20Le%20Maire%2C%20RP-P-OB-17.072.jpg?width=300"/>
     </a>
     <figurecaption>
      <b>
-      Isaacus Le Maire
+      Isaac le Maire
      </b>
      <br/>
-     Waalse predikant, in Edam, Rotterdam en Amsterdam (ca. 1623-1692)
+     Nederlands koopman (1558-1624)
      <br/>
      <br/>
+     <li>
+      <a href="https://nl.wikipedia.org/wiki/Isaac_le_Maire" target="_blank">
+       Wikipedia
+      </a>
+     </li>
      <li>
       <a href="https://commons.wikimedia.org/wiki/Category:Isaacus_Le_Maire" target="_blank">
        Commons
       </a>
      </li>
      <li>
-      <a href="http://www.wikidata.org/entity/Q80795609" target="_blank">
+      <a href="http://www.wikidata.org/entity/Q2656292" target="_blank">
        Wikidata
       </a>
      </li>
@@ -1153,6 +1166,35 @@
    <figure class="fiveColumnGridItem">
     <a href="https://commons.wikimedia.org/wiki/File:J%20vondel.jpg" target="_blank">
      <img alt="Joost van den Vondel" src="http://commons.wikimedia.org/wiki/Special:FilePath/J%20vondel.jpg?width=300"/>
+    </a>
+    <figurecaption>
+     <b>
+      Joost van den Vondel
+     </b>
+     <br/>
+     Nederlands schrijver en dichter (1587-1679)
+     <br/>
+     <br/>
+     <li>
+      <a href="https://nl.wikipedia.org/wiki/Joost_van_den_Vondel" target="_blank">
+       Wikipedia
+      </a>
+     </li>
+     <li>
+      <a href="https://commons.wikimedia.org/wiki/Category:Joost_van_den_Vondel" target="_blank">
+       Commons
+      </a>
+     </li>
+     <li>
+      <a href="http://www.wikidata.org/entity/Q312673" target="_blank">
+       Wikidata
+      </a>
+     </li>
+    </figurecaption>
+   </figure>
+   <figure class="fiveColumnGridItem">
+    <a href="https://commons.wikimedia.org/wiki/File:Denkmal%20Joost%20van%20de%20Vondel.jpg" target="_blank">
+     <img alt="Joost van den Vondel" src="http://commons.wikimedia.org/wiki/Special:FilePath/Denkmal%20Joost%20van%20de%20Vondel.jpg?width=300"/>
     </a>
     <figurecaption>
      <b>
