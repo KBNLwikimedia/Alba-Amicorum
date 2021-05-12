@@ -1,6 +1,6 @@
 ![Alba banner](../../../banners/AlbaAmicorumKB_BannerWikimedia_EN.jpg)
 
-# Resusing the album amicorum Jacob Heyblocq
+# Reusing the album amicorum Jacob Heyblocq
 
 This section is about **reusing AAJH content** (data & images, see 
 [project page](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Jacob_Heyblocq)) 
