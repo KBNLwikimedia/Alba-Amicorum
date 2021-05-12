@@ -1,3 +1,5 @@
+![Alba banner](../../../banners/AlbaAmicorumKB_BannerWikimedia_EN.jpg)
+
 # Resusing the album amicorum Jacob Heyblocq
 
 This section is about **reusing AAJH content** (data & images, see [project page](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Jacob_Heyblocq)) that is stored in the Wikimedia infrastructure (= Wikidata + Wikimedia Commons + Wikipedia) in other (non-Wiki) sites, platforms, scripts, code, software etc.
@@ -18,7 +20,9 @@ From the [JSON response of the API](https://commons.wikimedia.org/w/api.php?acti
 
   <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - CommmonsAPI - 12-05-2021.png" width="100%" align="left"/></kbd><br clear="all"/>
 
-The disadvantage of this approach: Wikimedians can adjust categorizations on Commons as they see fit. As a result, images can disappear from the above API call, or multiple images of 1 particular contributor can appear in the JSON response. In other words, the number of images in the resulting facebook may change, without one noticing. Update 12-05-2021: images have indeed disappeared from the category between 8-12-2020 and 12-05-2021, as can be seen by comparing the above screenshots with those timestamps.
+The disadvantage of this approach: Wikimedians can adjust categorizations on Commons as they see fit. As a result, images can disappear from the above API call, or multiple images of 1 particular contributor can appear in the JSON response. In other words, the number of images in the resulting facebook may change, without one noticing. 
+
+*Update 12-05-2021*: images have indeed disappeared from the category between 8-12-2020 and 12-05-2021, as can be seen by comparing the above screenshots with those timestamps.
 
 ### 2) SPARQL query on Wikidata
 In the Wikidata item *[Album amicorum of Jacobus Heyblocq (1623-1690), rector of the Latin school in Amsterdam (Q72752496)](https://www.wikidata.org/wiki/Q72752496)*, all contributors to this album are included in the property [contributor to the creative work or subject (P767)](https://www.wikidata.org/wiki/Property:P767). As a result, we can gather all those persons using [the SPARQL query below](https://w.wiki/tBE) and then display their images/faces in a ready-made gallery in the Wikidata interface
@@ -42,9 +46,9 @@ SELECT DISTINCT ?contributorDescription ?contributor ?contributorLabel ?gender ?
 } 
 ORDER BY DESC (?image)
 ```
-Here, via [Q82985930](https://www.wikidata.org/wiki/Q82985930) + *?maledummyimage* and [Q82992173](https://www.wikidata.org/wiki/Q82992173) + *?femaledummyimage*, male and female dummy images are inserted for the male resp. female album contributors whose images are not known in Wikimedia Commons.
+Here, via [Q82985930](https://www.wikidata.org/wiki/Q82985930) + *?maledummyimage* and [Q82992173](https://www.wikidata.org/wiki/Q82992173) + *?femaledummyimage*, male and female dummy images are inserted for the male resp. female album contributors whose images are not (yet) known in Wikimedia Commons.
 
-The 'smoelenboek' as a result of the above query looks like this:
+The  facebook resulting from the above query looks like this:
 
 <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - Wikidata SPARQL gallery - 08-12-2020.PNG" width="100%" align="left"/></kbd>
 <br clear="all"/>
