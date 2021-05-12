@@ -1,5 +1,8 @@
 # Script for https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden/Smoelenboek_bijdragers_AAJH#2)_Commons_API
-
+# Also used on Github for
+# https://github.com/KBNLwikimedia/Alba-Amicorum/tree/main/alba/AA-Jacob-Heyblocq/reuse and
+# https://kbnlwikimedia.github.io/Alba-Amicorum/alba/AA-Jacob-Heyblocq/reuse/
+#
 # We request the contributors to the album amicorum (https://commons.wikimedia.org/wiki/Category:Contributors_to_the_album_amicorum_Jacobus_Heyblocq)
 # in json format from the API on Wikimedia Commons.
 # https://commons.wikimedia.org/w/api.php?action=query&generator=categorymembers&gcmlimit=500&gcmnamespace=6&gcmtitle=Category:Contributors_to_the_album_amicorum_Jacobus_Heyblocq&format=json
@@ -25,24 +28,21 @@ def get_wc_thumb(image, width): # image = e.g. from Wikidata, width in pixels
 HTMLtemplate ="""
 <html>
 <head>
-<!-- # HTML smoelenboek bij https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden#2)_Commons_API
+<!-- # HTML facebook (Dutch: smoelenboek) for https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden#2)_Commons_API
 --> 
 <meta http-equiv='content-type' content='text/html;charset=utf-8'/>
 <link rel="stylesheet" href="./css/bijdragersAAJH-smoelenboek.css"> 
-<title>Smoelenboek bijdragers vriendenboek Jacob Heyblocq - Demo o.b.v. Wikimedia Commons API</title>
+<title>Facebook of contributors to the album amicorum  of Jacob Heyblocq - Demo for using the Wikimedia Commons API</title>
 </head>
 <body>
-<h1>Smoelenboek bijdragers <a href="https://www.kb.nl/themas/vriendenboeken/verwoede-verzamelaars/jacob-heyblocqs-vriendenboek" 
-target="_blank">Vriendenboek Jacob Heyblocq</a> - Demo o.b.v. Wikimedia Commons API</h1>
+<h1>Facebook of contributors to the <a href="https://www.kb.nl/themas/vriendenboeken/verwoede-verzamelaars/jacob-heyblocqs-vriendenboek" 
+target="_blank">album amicorum  of Jacob Heyblocq</a> - Demo for using the Wikimedia Commons API</h1>
 <ul>
-<li>Category op Wikimedia Commons: <a href="https://commons.wikimedia.org/wiki/Category:Contributors_to_the_album_amicorum_Jacobus_Heyblocq" 
+<li>Category on Wikimedia Commons: <a href="https://commons.wikimedia.org/wiki/Category:Contributors_to_the_album_amicorum_Jacobus_Heyblocq" 
 target="_blank">https://commons.wikimedia.org/wiki/Category:Contributors_to_the_album_amicorum_Jacobus_Heyblocq</a></li>
-<li>Uitleg & context in het Nederlands, op Wikipedia: <a href="https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken
-/Hergebruik/Voorbeelden#2)_Commons_API" target="_blank">https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken
-/Hergebruik/Voorbeelden#2)_Commons_API</a></li>
-<li>Uitleg & context in het Engels, op Github:  <a href="https://github.com/KBNLwikimedia/kbnlwikimedia.github.io/blob/master/AlbaAmicorum/AlbumAmicorumJacobHeyblocq/reuse" 
-target="_blank">https://github.com/KBNLwikimedia/kbnlwikimedia.github.io/blob/master/AlbaAmicorum/AlbumAmicorumJacobHeyblocq/reuse</a></li>
-
+<li>Explanations & context in Dutch, on Wikipedia: <a href="https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden/Smoelenboek_bijdragers_AAJH#2)_Commons_API" target="_blank">https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden/Smoelenboek_bijdragers_AAJH#2)_Commons_API</a></li>
+<li>Explanations & context in English, on Github: <a href="https://kbnlwikimedia.github.io/Alba-Amicorum/alba/AA-Jacob-Heyblocq/reuse/" target="_blank">https://kbnlwikimedia.github.io/Alba-Amicorum/alba/AA-Jacob-Heyblocq/reuse/</a> and 
+<a href="https://github.com/KBNLwikimedia/Alba-Amicorum/tree/main/alba/AA-Jacob-Heyblocq/reuse" target="_blank">https://github.com/KBNLwikimedia/Alba-Amicorum/tree/main/alba/AA-Jacob-Heyblocq/reuse</li>
 </ul>
 <div class="fiveColumnGrid">
 {gallery}
