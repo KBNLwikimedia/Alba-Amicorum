@@ -1,6 +1,14 @@
-#Script for https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Jacob_Heyblocq/Contributors#Europeana
+# Aim: Find works in Europeana by/from/about/related to the contributors to the Album amicorum Jacob Heyblocq
 
-# Find works by/from/abot/related to AAJH contributors in Europeana
+# Output of this script: https://github.com/KBNLwikimedia/Alba-Amicorum/blob/main/alba/AA-Jacob-Heyblocq/reuse/excels/AAJH-contributors-works-Europeana.xlsx
+
+# Script is not fully finished and/or 100% reliable
+
+# Last update dd 16-06-2021 by Olaf Janssen
+
+# https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Jacob_Heyblocq/Contributors#Europeana
+# https://kbnlwikimedia.github.io/KBCollectionHighlights/stories/Cool%20new%20things%20you%20can%20now%20do%20with%20the%20KB's%20collection%20highlights/Part%205%2C%20Reuse.html (item 48)
+
 ######################################################################
 import json
 import requests
