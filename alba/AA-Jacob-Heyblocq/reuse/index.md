@@ -4,7 +4,11 @@
 
 This section is about **reusing AAJH content** (data & images, see [project page](https://www.wikidata.org/wiki/Wikidata:WikiProject_Alba_amicorum_National_Library_of_the_Netherlands/Jacob_Heyblocq)) that is stored in the Wikimedia infrastructure (= Wikidata + Wikimedia Commons + Wikipedia) in other (non-Wiki) sites, platforms, scripts, code, software etc.
 
+****************************
 ## Image gallery of album contributors
+
+<sup>Olaf Janssen, May 2021</sup>
+
 **[>> See the corresponding page on Dutch Wikipedia](https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Hergebruik/Voorbeelden/Smoelenboek_bijdragers_AAJH)** for additional context & explanations (in Dutch). 
 
 [Dozens of people](https://www.kb.nl/themas/vriendenboeken/verwoede-verzamelaars/jacob-heyblocqs-vriendenboek) (see the bottom of that page, at *Index op auteursnamen*) contributed to the 17th century [album amicorum of Jacob Heyblocq](https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief/Topstukken/Alfabetisch#Album_amicorum_van_Jacobus_Heyblocq_(1623-1690),_rector_van_de_Latijnse_school_te_Amsterdam). We would like to make a photo gallery/facebook (Dutch: *smoelenboek*) of these persons, as far as images of those persons are known (on Commons).
@@ -114,7 +118,7 @@ In addition to this image gallery, we can also make [a list](bijdragersAAJH-lijs
 
   <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Lijst - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" height="250"/></kbd><kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Beroepenwolk - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" height="250"/></kbd><br clear="all"/>
   
-  
+******************  
 ### About the author
 <img align="left" src="images/389px-Olaf_Janssen_at_GLAM_WIKI_Tel_Aviv_Conference_2018.JPG" width="50"/>
 
