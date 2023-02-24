@@ -18,11 +18,11 @@ We can do this in multiple ways:
 ### 1) HTML facebook based on the Wikimedia Commons API
 Using its REST API, we want to mimick (parts of) the [Category:Contributors to the album amicorum Jacobus Heyblocq](https://commons.wikimedia.org/wiki/Category:Contributors_to_the_album_amicorum_Jacobus_Heyblocq) on Wikimedia Commons. This category looks like this (d.d. 8-12-2020) 
 
-  <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - Wikimedia Commons Category - 08-12-2020.png" width="100%" align="left"/></kbd><br clear="all"/>
+  <kbd><img src="https://github.com/KBNLwikimedia/Alba-Amicorum/raw/main/alba/AA-Jacob-Heyblocq/reuse/images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - Wikimedia Commons Category - 08-12-2020.png" width="100%" align="left"/></kbd><br clear="all"/>
 
 From the [JSON response of the API](https://commons.wikimedia.org/w/api.php?action=query&generator=categorymembers&gcmlimit=500&gcmnamespace=6&gcmtitle=Category:Contributors_to_the_album_amicorum_Jacobus_Heyblocq&format=json) and using this [Python script](scripts/bijdragersAAJH-smoelenboek-CommonsAPI.py) we can generate a [basic HTML image gallery/smoelenboek of contributors](bijdragersAAJH-smoelenboek-CommmonsAPI.html). The resulting HTML page looks like this (d.d. 12-05-2021) :
 
-  <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - CommmonsAPI - 12-05-2021.png" width="100%" align="left"/></kbd><br clear="all"/>
+  <kbd><img src="https://github.com/KBNLwikimedia/Alba-Amicorum/raw/main/alba/AA-Jacob-Heyblocq/reuse/images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - CommmonsAPI - 12-05-2021.png" width="100%" align="left"/></kbd><br clear="all"/>
 
 The disadvantage of this approach: Wikimedians can adjust categorizations on Commons as they see fit. As a result, images can disappear from the above API call, or multiple images of 1 particular contributor can appear in the JSON response. In other words, the number of images in the resulting facebook may change, without one noticing. 
 
@@ -54,7 +54,7 @@ Here, via [Q82985930](https://www.wikidata.org/wiki/Q82985930) + *?maledummyimag
 
 The  facebook resulting from the above query looks like this:
 
-  <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - Wikidata SPARQL gallery - 08-12-2020.PNG" width="100%" align="left"/></kbd>
+  <kbd><img src="https://github.com/KBNLwikimedia/Alba-Amicorum/raw/main/alba/AA-Jacob-Heyblocq/reuse/images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - Wikidata SPARQL gallery - 08-12-2020.PNG" width="100%" align="left"/></kbd>
 <br clear="all"/>
 
 ### 3) HTML facebook based on the Wikidata SPARQL service with a JSON response
@@ -88,7 +88,7 @@ When running a SPARQL query in the Wikidata query interface, we can have the res
 
   3) With this JSON we can now use [this Python script](scripts/bijdragersAAJH-smoelenboek-SparqlWikidataJson.py) to create [this simple HTML photo gallery/smoelenboek](bijdragersAAJH-smoelenboek-SparqlWikidataJson.html).
 
-  <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - SparqlWikidataJson - 12-05-2021.png" width="100%" align="left"/></kbd><br clear="all"/>
+  <kbd><img src="https://github.com/KBNLwikimedia/Alba-Amicorum/raw/main/alba/AA-Jacob-Heyblocq/reuse/images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - SparqlWikidataJson - 12-05-2021.png" width="100%" align="left"/></kbd><br clear="all"/>
 
 ### 4) Wikidata SPARQL + HTML-embed via iframe
 The facebook made above can also be embedded in an HTML page by means of an HTML iframe. The basic code for that looks like this:
@@ -107,24 +107,24 @@ The facebook made above can also be embedded in an HTML page by means of an HTML
 ```
 This results into a [plain, unstyled facebook in HTML](bijdragersAAJH-smoelenboek-SparqlHTMLembed-plain.html) looking like this: 
 
-  <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - SparqlHTMLembed-plain - 12-05-2021.png" width="100%" align="left"/></kbd><br clear="all"/>
+  <kbd><img src="https://github.com/KBNLwikimedia/Alba-Amicorum/raw/main/alba/AA-Jacob-Heyblocq/reuse/images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - SparqlHTMLembed-plain - 12-05-2021.png" width="100%" align="left"/></kbd><br clear="all"/>
 
 #### kb.nl styling
 We can further develop this HTML iframe approach into a design that fits seamlessly into [the pages about the album on the KB website](https://www.kb.nl/themas/vriendenboeken/verwoede-verzamelaars/jacob-heyblocqs-vriendenboek), resulting into [an HTML-page](bijdragersAAJH-smoelenboek-SparqlHTMLembed-mockupkbnl.html) looking like this:
 
-  <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" width="100%" align="left"/></kbd><br clear="all"/>
+  <kbd><img src="https://github.com/KBNLwikimedia/Alba-Amicorum/raw/main/alba/AA-Jacob-Heyblocq/reuse/images/Contributors to the album amicorum Jacobus Heyblocq - Smoelenboek - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" width="100%" align="left"/></kbd><br clear="all"/>
 
 In addition to this image gallery, we can also make [a list](bijdragersAAJH-lijst-SparqlHTMLembed-mockupkbnl.html) and a [cloud of professions](bijdragersAAJH-beroepen-SparqlHTMLembed-mockupkbnl.html) (*Dutch: beroepenwolk*) of the album contributors in the design of the KB website, again based on embedded HTML iframes containing Wikidata SPARQL queries:
 
-  <kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Lijst - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" height="250"/></kbd><kbd><img src="images/Contributors to the album amicorum Jacobus Heyblocq - Beroepenwolk - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" height="250"/></kbd><br clear="all"/>
+  <kbd><img src="https://github.com/KBNLwikimedia/Alba-Amicorum/raw/main/alba/AA-Jacob-Heyblocq/reuse/images/Contributors to the album amicorum Jacobus Heyblocq - Lijst - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" height="250"/></kbd><kbd><img src="https://github.com/KBNLwikimedia/Alba-Amicorum/raw/main/alba/AA-Jacob-Heyblocq/reuse/images/Contributors to the album amicorum Jacobus Heyblocq - Beroepenwolk - SparqlHTMLembed-mockupkbnl - 31-12-2020.png" height="250"/></kbd><br clear="all"/>
   
 ******************  
 ### About the author
-<img align="left" src="images/389px-Olaf_Janssen_at_GLAM_WIKI_Tel_Aviv_Conference_2018.JPG" width="50"/>
+<img align="left" src="https://github.com/KBNLwikimedia/Alba-Amicorum/raw/main/alba/AA-Jacob-Heyblocq/reuse/images/389px-Olaf_Janssen_at_GLAM_WIKI_Tel_Aviv_Conference_2018.JPG" width="50"/>
 
 Olaf Janssen is the Wikimedia coordinator of the KB, the national library of the Netherlands. He contributes to
 [Wikipedia](https://nl.wikipedia.org/wiki/Wikipedia:GLAM/Koninklijke_Bibliotheek_en_Nationaal_Archief), [Wikimedia Commons](https://commons.wikimedia.org/wiki/Category:Koninklijke_Bibliotheek) and [Wikidata](https://www.wikidata.org/wiki/Wikidata:GLAM/Koninklijke_Bibliotheek_Nederland) as [User:OlafJanssen](https://nl.wikipedia.org/wiki/Gebruiker:OlafJanssen)<br>
 
 ### Reusing this article
 This text of this article is available under the [Creative Commons Attribution](https://creativecommons.org/licenses/by/4.0/) CC-BY 4.0 License. 
-<kbd><img src="images/cc-by.png" width="80"/></kbd>
+<kbd><img src="https://github.com/KBNLwikimedia/Alba-Amicorum/raw/main/alba/AA-Jacob-Heyblocq/reuse/images/cc-by.png" width="80"/></kbd>
