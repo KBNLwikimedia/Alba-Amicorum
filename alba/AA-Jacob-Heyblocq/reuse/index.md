@@ -1,4 +1,4 @@
-![Alba banner](../../../banners/AlbaAmicorumKB_BannerWikimedia_EN.jpg)
+![Alba banner](https://github.com/KBNLwikimedia/Alba-Amicorum/raw/main/banners/AlbaAmicorumKB_BannerWikimedia_EN.jpg)
 
 # Reusing the album amicorum Jacob Heyblocq
 
